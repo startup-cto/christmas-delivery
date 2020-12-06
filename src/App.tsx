@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Display } from "./Display";
+import { Pixel } from "./models/Pixel";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const state = {
+    sleighs: [
+      {
+        id: "1",
+        position: {
+          x: 400 as Pixel,
+          y: 300 as Pixel,
+        },
+      },
+    ],
+    world: {
+      size: {
+        width: 800 as Pixel,
+        height: 600 as Pixel,
+      },
+    },
+  };
+  return <Display state={state} />;
 }
 
 export default App;
