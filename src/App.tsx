@@ -1,45 +1,16 @@
-import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { State } from "./models/State";
 import { Display } from "./Display";
-import { Pixel } from "./models/Pixel";
-import { PixelPerSecond } from "./models/PixelPerSecond";
-import { configureStore } from "@reduxjs/toolkit";
+import React from "react";
+import { actions } from "./ConnectedApp";
 
-const defaultState = {
-  houses: [
-    {
-      id: "1",
-      position: {
-        x: 100 as Pixel,
-        y: 100 as Pixel,
-      },
-    },
-  ],
-  sleighs: [
-    {
-      id: "1",
-      maxSpeed: 5 as PixelPerSecond,
-      position: {
-        x: 400 as Pixel,
-        y: 300 as Pixel,
-      },
-      commands: [],
-    },
-  ],
-  world: {
-    size: {
-      width: 800 as Pixel,
-      height: 600 as Pixel,
-    },
-  },
-};
-
-const store = configureStore({
-  reducer: (state = defaultState, action) => state,
-});
-
-function App() {
-  const state = store.getState();
-  return <Display state={state} />;
+export function App() {
+  const state = useSelector((state: State) => state);
+  const dispatch = useDispatch();
+  return (
+    <>
+      <Display state={state} />
+      <button onClick={() => dispatch(actions.passTime())}>Wait 1 tick</button>
+    </>
+  );
 }
-
-export default App;

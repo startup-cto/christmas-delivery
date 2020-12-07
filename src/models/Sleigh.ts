@@ -1,10 +1,10 @@
 import { Position } from "./Position";
 import { Command } from "./Command";
-import { PixelPerSecond } from "./PixelPerSecond";
+import { PixelPerTick } from "./PixelPerTick";
 
 export interface Sleigh {
   id: string;
   position: Position;
-  maxSpeed: PixelPerSecond;
+  maxSpeed: PixelPerTick;
   commands: Command[];
 }
