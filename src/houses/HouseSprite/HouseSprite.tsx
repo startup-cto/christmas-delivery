@@ -1,8 +1,8 @@
-import { Sprite } from "../../Sprite";
+import { Sprite } from "../../components/Sprite/Sprite";
 import houseSpriteSheet from "./house.png";
-import { Pixel } from "../../../models/Pixel";
+import { Pixel } from "../../models/Pixel";
 import React from "react";
-import { Position } from "../../../models/Position";
+import { Position } from "../../models/Position";
 
 const houseSpriteSheetMetaData = {
   source: houseSpriteSheet,

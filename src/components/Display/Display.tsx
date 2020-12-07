@@ -1,7 +1,7 @@
-import { State } from "./models/State";
+import { State } from "./State";
 import React from "react";
-import { SleighSprite } from "./components/sprites/sleigh-sprite/SleighSprite";
-import { HouseSprite } from "./components/sprites/house-sprite/HouseSprite";
+import { SleighSprite } from "../../sleighs/SleighSprite/SleighSprite";
+import { HouseSprite } from "../../houses/HouseSprite/HouseSprite";
 
 interface Props {
   state: State;

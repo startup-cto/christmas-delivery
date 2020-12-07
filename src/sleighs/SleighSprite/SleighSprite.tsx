@@ -1,8 +1,8 @@
-import { Sprite } from "../../Sprite";
+import { Sprite } from "../../components/Sprite/Sprite";
 import sleighSpriteSheet from "./sleigh.png";
-import { Pixel } from "../../../models/Pixel";
+import { Pixel } from "../../models/Pixel";
 import React from "react";
-import { Sleigh } from "../../../sleighs/Sleigh";
+import { Sleigh } from "../Sleigh";
 
 const sleighSpriteSheetMetaData = {
   source: sleighSpriteSheet,

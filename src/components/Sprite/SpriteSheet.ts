@@ -1,4 +1,4 @@
-import { Size } from "./Size";
+import { Size } from "../../models/Size";
 
 export interface SpriteSheet<State> {
   source: string;

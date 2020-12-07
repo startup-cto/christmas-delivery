@@ -1,4 +1,4 @@
-import { Position } from "./Position";
+import { Position } from "../models/Position";
 
 export interface House {
   position: Position;

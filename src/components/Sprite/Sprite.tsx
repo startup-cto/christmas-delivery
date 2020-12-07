@@ -1,7 +1,7 @@
-import { Position } from "../models/Position";
+import { Position } from "../../models/Position";
 import React from "react";
-import { SpriteSheet } from "../models/SpriteSheet";
-import { useFrame } from "../useFrame";
+import { SpriteSheet } from "./SpriteSheet";
+import { useFrame } from "../../useFrame";
 
 interface Props<State> {
   position: Position;

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { State } from "./models/State";
-import { Display } from "./Display";
+import { State } from "./components/Display/State";
+import { Display } from "./components/Display/Display";
 import React from "react";
 import { actions } from "./sleighs/slice";
 
