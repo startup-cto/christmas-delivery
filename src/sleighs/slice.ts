@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { PixelPerTick } from "../models/PixelPerTick";
 import { Pixel } from "../models/Pixel";
 import { actions as worldActions } from "../world/slice";
+import { Position } from "../models/Position";
 
 export const { reducer } = createSlice({
   name: "sleighs",
@@ -13,19 +14,41 @@ export const { reducer } = createSlice({
         x: 400 as Pixel,
         y: 300 as Pixel,
       },
-      commands: [],
+      commands: [
+        {
+          name: "move",
+          payload: {
+            x: 500 as Pixel,
+            y: 100 as Pixel,
+          },
+        },
+      ],
     },
   ],
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(worldActions.waitTicks, (state, action) =>
-      state.map((sleigh) => ({
-        ...sleigh,
-        position: {
-          x: (sleigh.position.x + sleigh.maxSpeed * action.payload) as Pixel,
-          y: (sleigh.position.y + sleigh.maxSpeed * action.payload) as Pixel,
-        },
-      }))
+      state.map((sleigh) => {
+        const currentPosition = sleigh.position;
+        const targetPosition = sleigh.commands[0].payload;
+        const direction = {
+          x: targetPosition.x - currentPosition.x,
+          y: targetPosition.y - currentPosition.y,
+        };
+        const length = Math.sqrt(
+          direction.x * direction.x + direction.y * direction.y
+        );
+        const nextPosition = {
+          x: (currentPosition.x +
+            (sleigh.maxSpeed * action.payload * direction.x) / length) as Pixel,
+          y: (currentPosition.y +
+            (sleigh.maxSpeed * action.payload * direction.y) / length) as Pixel,
+        };
+        return {
+          ...sleigh,
+          position: nextPosition,
+        };
+      })
     );
   },
 });
