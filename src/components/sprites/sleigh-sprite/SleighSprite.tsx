@@ -10,7 +10,7 @@ const sleighSpriteSheetMetaData = {
     width: 250 as Pixel,
     height: 125 as Pixel,
   },
-  frames: 5,
+  frames: 6,
   states: ["idle", "moving", "crashing", "burning"] as const,
 };
 
