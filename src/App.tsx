@@ -1,6 +1,7 @@
 import React from "react";
 import { Display } from "./Display";
 import { Pixel } from "./models/Pixel";
+import { PixelPerSecond } from "./models/PixelPerSecond";
 
 function App() {
   const state = {
@@ -16,10 +17,12 @@ function App() {
     sleighs: [
       {
         id: "1",
+        maxSpeed: 5 as PixelPerSecond,
         position: {
           x: 400 as Pixel,
           y: 300 as Pixel,
         },
+        commands: [],
       },
     ],
     world: {
