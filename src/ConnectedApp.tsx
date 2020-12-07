@@ -1,12 +1,24 @@
 import React from "react";
 import { Pixel } from "./models/Pixel";
-import { PixelPerTick } from "./models/PixelPerTick";
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { combineReducers, configureStore, createSlice } from "@reduxjs/toolkit";
 import { App } from "./App";
 import { Provider } from "react-redux";
+import { reducer as sleighs } from "./sleighs/slice";
 
-const initialState = {
-  houses: [
+export const { reducer: world } = createSlice({
+  name: "world",
+  initialState: {
+    size: {
+      width: 800 as Pixel,
+      height: 600 as Pixel,
+    },
+  },
+  reducers: {},
+});
+
+export const { reducer: houses } = createSlice({
+  name: "houses",
+  initialState: [
     {
       id: "1",
       position: {
@@ -15,43 +27,15 @@ const initialState = {
       },
     },
   ],
-  sleighs: [
-    {
-      id: "1",
-      maxSpeed: 5 as PixelPerTick,
-      position: {
-        x: 400 as Pixel,
-        y: 300 as Pixel,
-      },
-      commands: [],
-    },
-  ],
-  world: {
-    size: {
-      width: 800 as Pixel,
-      height: 600 as Pixel,
-    },
-  },
-};
-
-export const { reducer, actions } = createSlice({
-  name: "game",
-  initialState,
-  reducers: {
-    passTime: (state) => ({
-      ...state,
-      sleighs: state.sleighs.map((sleigh) => ({
-        ...sleigh,
-        position: {
-          x: (sleigh.position.x + sleigh.maxSpeed) as Pixel,
-          y: (sleigh.position.y + sleigh.maxSpeed) as Pixel,
-        },
-      })),
-    }),
-  },
+  reducers: {},
 });
+
 const store = configureStore({
-  reducer,
+  reducer: combineReducers({
+    houses,
+    sleighs,
+    world,
+  }),
 });
 
 function ConnectedApp() {

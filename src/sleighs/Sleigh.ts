@@ -1,6 +1,6 @@
-import { Position } from "./Position";
+import { Position } from "../models/Position";
 import { Command } from "./Command";
-import { PixelPerTick } from "./PixelPerTick";
+import { PixelPerTick } from "../models/PixelPerTick";
 
 export interface Sleigh {
   id: string;

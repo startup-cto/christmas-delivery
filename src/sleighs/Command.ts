@@ -1,4 +1,4 @@
-import { Position } from "./Position";
+import { Position } from "../models/Position";
 
 interface MoveCommand {
   name: "move";

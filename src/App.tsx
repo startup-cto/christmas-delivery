@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { State } from "./models/State";
 import { Display } from "./Display";
 import React from "react";
-import { actions } from "./ConnectedApp";
+import { actions } from "./sleighs/slice";
 
 export function App() {
   const state = useSelector((state: State) => state);

@@ -1,4 +1,4 @@
-import { Sleigh } from "./Sleigh";
+import { Sleigh } from "../sleighs/Sleigh";
 import { Size } from "./Size";
 import { House } from "./House";
 
