@@ -7,6 +7,6 @@ export function useFrame(frames: number) {
       setFrame((frame) => (frame + 1) % frames);
     }, 100);
     return () => clearInterval(timer);
-  }, [setFrame]);
+  }, [frames, setFrame]);
   return frame;
 }
