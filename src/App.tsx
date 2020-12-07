@@ -4,6 +4,15 @@ import { Pixel } from "./models/Pixel";
 
 function App() {
   const state = {
+    houses: [
+      {
+        id: "1",
+        position: {
+          x: 100 as Pixel,
+          y: 100 as Pixel,
+        },
+      },
+    ],
     sleighs: [
       {
         id: "1",
