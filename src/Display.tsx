@@ -1,8 +1,6 @@
 import { State } from "./models/State";
 import React from "react";
-import { Sprite } from "./components/Sprite";
-import { Pixel } from "./models/Pixel";
-import sleighSpriteSheet from "./assets/sleigh.png";
+import { SleighSprite } from "./components/sprites/sleigh-sprite/SleighSprite";
 
 interface Props {
   state: State;
@@ -20,20 +18,7 @@ export function Display({ state }: Props) {
       }}
     >
       {state.sleighs.map((sleigh) => (
-        <Sprite
-          key={sleigh.id}
-          position={sleigh.position}
-          spriteSheet={{
-            source: sleighSpriteSheet,
-            size: {
-              width: 250 as Pixel,
-              height: 125 as Pixel,
-            },
-            frames: 5,
-            states: ["idle", "moving", "crashing", "burning"],
-          }}
-          state="idle"
-        />
+        <SleighSprite key={sleigh.id} sleigh={sleigh} state="idle" />
       ))}
     </div>
   );

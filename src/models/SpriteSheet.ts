@@ -4,5 +4,5 @@ export interface SpriteSheet<State> {
   source: string;
   size: Size;
   frames: number;
-  states: State[];
+  states: readonly State[];
 }
