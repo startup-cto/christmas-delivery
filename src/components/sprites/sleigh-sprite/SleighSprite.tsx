@@ -14,15 +14,17 @@ const sleighSpriteSheetMetaData = {
   states: ["idle", "moving", "crashing", "burning"] as const,
 };
 
-export function SleighSprite(props: {
+export interface Props {
   sleigh: Sleigh;
   state: typeof sleighSpriteSheetMetaData["states"][number];
-}) {
+}
+
+export function SleighSprite({ sleigh: { position }, state }: Props) {
   return (
     <Sprite
-      position={props.sleigh.position}
+      position={position}
       spriteSheet={sleighSpriteSheetMetaData}
-      state={props.state}
+      state={state}
     />
   );
 }
