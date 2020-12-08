@@ -5,12 +5,15 @@ export class Vector2D {
     return Math.sqrt(this.x ** 2 + this.y ** 2) as Pixel;
   }
 
-  constructor(readonly x: Pixel, readonly y: Pixel) {}
+  readonly x: Pixel;
+  readonly y: Pixel;
+
+  constructor(x: number, y: number) {
+    this.y = y as Pixel;
+    this.x = x as Pixel;
+  }
 
   add(vector2D: Vector2D): Vector2D {
-    return new Vector2D(
-      (this.x + vector2D.x) as Pixel,
-      (this.y + vector2D.y) as Pixel
-    );
+    return new Vector2D(this.x + vector2D.x, this.y + vector2D.y);
   }
 }
