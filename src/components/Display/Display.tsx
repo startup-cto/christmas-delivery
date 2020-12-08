@@ -18,11 +18,11 @@ export function Display({ state }: Props) {
         height: state.world.size.height,
       }}
     >
-      {state.sleighs.map((sleigh) => (
-        <SleighSprite key={sleigh.id} sleigh={sleigh} state="idle" />
-      ))}
       {state.houses.map((house) => (
         <HouseSprite key={house.id} position={house.position} state="idle" />
+      ))}
+      {state.sleighs.map((sleigh) => (
+        <SleighSprite key={sleigh.id} sleigh={sleigh} state="idle" />
       ))}
     </div>
   );
