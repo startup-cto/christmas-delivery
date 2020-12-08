@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { PixelPerTick } from "../models/PixelPerTick";
 import { Pixel } from "../models/Pixel";
 import { actions as worldActions } from "../world/slice";
+import { Vector2D } from "../utils/Vector2D/Vector2D";
 
 export const { reducer } = createSlice({
   name: "sleighs",
@@ -29,21 +30,13 @@ export const { reducer } = createSlice({
     builder.addCase(worldActions.waitTicks, (state, action) =>
       state.map((sleigh) => {
         if (sleigh.commands.length === 0) return sleigh;
-        const currentPosition = sleigh.position;
-        const targetPosition = sleigh.commands[0].payload;
-        const direction = {
-          x: targetPosition.x - currentPosition.x,
-          y: targetPosition.y - currentPosition.y,
-        };
-        const length = Math.sqrt(
-          direction.x * direction.x + direction.y * direction.y
+        const currentCommand = sleigh.commands[0];
+        const currentPosition = new Vector2D(sleigh.position);
+        const targetPosition = new Vector2D(currentCommand.payload);
+        const direction = targetPosition.subtract(currentPosition).normalize();
+        const nextPosition = currentPosition.add(
+          direction.scale(sleigh.maxSpeed * action.payload)
         );
-        const nextPosition = {
-          x: (currentPosition.x +
-            (sleigh.maxSpeed * action.payload * direction.x) / length) as Pixel,
-          y: (currentPosition.y +
-            (sleigh.maxSpeed * action.payload * direction.y) / length) as Pixel,
-        };
         return {
           ...sleigh,
           position: nextPosition,
