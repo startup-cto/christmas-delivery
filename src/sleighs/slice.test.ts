@@ -23,5 +23,39 @@ describe("sleighs", () => {
         reducer([sleighWithoutCommands], worldActions.waitTicks(1))
       ).toEqual([sleighWithoutCommands]);
     });
+
+    it("moves a sleigh towards its target by its maxSpeed", () => {
+      expect(
+        reducer(
+          [
+            {
+              id: "1",
+              maxSpeed: 1 as PixelPerTick,
+              commands: [
+                {
+                  name: "move",
+                  payload: {
+                    x: 100 as Pixel,
+                    y: 0 as Pixel,
+                  },
+                },
+              ],
+              position: {
+                x: 0 as Pixel,
+                y: 0 as Pixel,
+              },
+            },
+          ],
+          worldActions.waitTicks(1)
+        )
+      ).toContainEqual(
+        expect.objectContaining({
+          position: {
+            x: 1 as Pixel,
+            y: 0 as Pixel,
+          },
+        })
+      );
+    });
   });
 });
