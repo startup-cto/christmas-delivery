@@ -14,15 +14,7 @@ export const { reducer } = createSlice({
         x: 400 as Pixel,
         y: 300 as Pixel,
       },
-      commands: [
-        {
-          name: "move",
-          payload: {
-            x: 500 as Pixel,
-            y: 100 as Pixel,
-          },
-        },
-      ],
+      commands: [] as Command[],
     },
   ],
   reducers: {},
