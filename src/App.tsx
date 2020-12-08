@@ -10,7 +10,11 @@ export function App() {
   const state = useSelector((state: State) => state);
   const dispatch = useDispatch();
   useEffect(() => {
-    const timer = setInterval(() => dispatch(worldActions.waitTicks(1)), 100);
+    const fps = 50;
+    const timer = setInterval(
+      () => dispatch(worldActions.waitTicks(1)),
+      1000 / fps
+    );
     return () => clearInterval(timer);
   }, [dispatch]);
 
