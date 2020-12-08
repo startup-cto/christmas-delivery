@@ -3,11 +3,19 @@ import { State } from "./components/Display/State";
 import { Display } from "./components/Display/Display";
 import React, { useEffect } from "react";
 import { actions as worldActions } from "./world/slice";
-import { actions as sleighActions } from "./sleighs/slice";
-import { Pixel } from "./models/Pixel";
+import { Game } from "./Game/Game";
+import { store } from "./store";
+import { executeCode } from "./executeCode/executeCode";
 
 export function App() {
   const state = useSelector((state: State) => state);
+  const code = `
+    game.sleighs[0].moveTo(game.houses[0].position)
+  `;
+  function runCode() {
+    const game = new Game(store);
+    executeCode(code, game);
+  }
   const dispatch = useDispatch();
   useEffect(() => {
     const fps = 50;
@@ -21,21 +29,7 @@ export function App() {
   return (
     <>
       <Display state={state} />
-      <button
-        onClick={() =>
-          dispatch(
-            sleighActions.moveSleigh({
-              sleighId: "1",
-              targetPosition: {
-                x: 100 as Pixel,
-                y: 100 as Pixel,
-              },
-            })
-          )
-        }
-      >
-        Tell santa to move to the house!
-      </button>
+      <button onClick={runCode}>Run code</button>
     </>
   );
 }
