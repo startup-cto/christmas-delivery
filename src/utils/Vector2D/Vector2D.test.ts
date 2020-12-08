@@ -23,4 +23,10 @@ describe("Vector2D", () => {
       );
     });
   });
+
+  describe("#scale", () => {
+    it("returns (5, 10) when scaling (1, 2) by 5", () => {
+      expect(new Vector2D(1, 2).scale(5)).toEqual(new Vector2D(5, 10));
+    });
+  });
 });

@@ -16,4 +16,8 @@ export class Vector2D {
   add(vector2D: Vector2D): Vector2D {
     return new Vector2D(this.x + vector2D.x, this.y + vector2D.y);
   }
+
+  scale(factor: number): Vector2D {
+    return new Vector2D(factor * this.x, factor * this.y);
+  }
 }
