@@ -24,6 +24,14 @@ describe("Vector2D", () => {
     });
   });
 
+  describe("#subtract", () => {
+    it("returns (0,1) when subtracting (1,0) from (1,1)", () => {
+      expect(
+        new Vector2D({ x: 1, y: 1 }).subtract(new Vector2D({ x: 1, y: 0 }))
+      ).toEqual(new Vector2D({ x: 0, y: 1 }));
+    });
+  });
+
   describe("#scale", () => {
     it("returns (5, 10) when scaling (1, 2) by 5", () => {
       expect(new Vector2D({ x: 1, y: 2 }).scale(5)).toEqual(

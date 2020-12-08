@@ -24,4 +24,8 @@ export class Vector2D {
   normalize() {
     return this.scale(1 / this.length);
   }
+
+  subtract(vector2D: Vector2D): Vector2D {
+    return new Vector2D({ x: this.x - vector2D.x, y: this.y - vector2D.y });
+  }
 }
