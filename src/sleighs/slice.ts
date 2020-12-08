@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { PixelPerTick } from "../models/PixelPerTick";
 import { Pixel } from "../models/Pixel";
 import { actions as worldActions } from "../world/slice";
-import { Position } from "../models/Position";
 
 export const { reducer } = createSlice({
   name: "sleighs",
@@ -29,6 +28,7 @@ export const { reducer } = createSlice({
   extraReducers: (builder) => {
     builder.addCase(worldActions.waitTicks, (state, action) =>
       state.map((sleigh) => {
+        if (sleigh.commands.length === 0) return sleigh;
         const currentPosition = sleigh.position;
         const targetPosition = sleigh.commands[0].payload;
         const direction = {
