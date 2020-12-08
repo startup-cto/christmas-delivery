@@ -20,4 +20,8 @@ export class Vector2D {
   scale(factor: number): Vector2D {
     return new Vector2D(factor * this.x, factor * this.y);
   }
+
+  normalize() {
+    return this.scale(1 / this.length);
+  }
 }

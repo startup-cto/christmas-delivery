@@ -29,4 +29,10 @@ describe("Vector2D", () => {
       expect(new Vector2D(1, 2).scale(5)).toEqual(new Vector2D(5, 10));
     });
   });
+
+  describe("#normalize", () => {
+    it("returns (1, 0) when normalizing (10,0)", () => {
+      expect(new Vector2D(10, 0).normalize()).toEqual(new Vector2D(1, 0));
+    });
+  });
 });
