@@ -57,5 +57,37 @@ describe("sleighs", () => {
         })
       );
     });
+
+    it("moves a sleigh onto its target if it is fast enough to reach it", () => {
+      const targetPosition = {
+        x: 1 as Pixel,
+        y: 0 as Pixel,
+      };
+      expect(
+        reducer(
+          [
+            {
+              id: "1",
+              maxSpeed: 100 as PixelPerTick,
+              commands: [
+                {
+                  name: "move",
+                  payload: targetPosition,
+                },
+              ],
+              position: {
+                x: 0 as Pixel,
+                y: 0 as Pixel,
+              },
+            },
+          ],
+          worldActions.waitTicks(1)
+        )
+      ).toContainEqual(
+        expect.objectContaining({
+          position: targetPosition,
+        })
+      );
+    });
   });
 });

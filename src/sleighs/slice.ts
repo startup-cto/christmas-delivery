@@ -33,10 +33,13 @@ export const { reducer } = createSlice({
         const currentCommand = sleigh.commands[0];
         const currentPosition = new Vector2D(sleigh.position);
         const targetPosition = new Vector2D(currentCommand.payload);
-        const direction = targetPosition.subtract(currentPosition).normalize();
-        const nextPosition = currentPosition.add(
-          direction.scale(sleigh.maxSpeed * action.payload)
-        );
+        const movementNeeded = targetPosition.subtract(currentPosition);
+        const direction = movementNeeded.normalize();
+        const movementDistance = sleigh.maxSpeed * action.payload;
+        const nextPosition =
+          movementNeeded.length <= movementDistance
+            ? targetPosition
+            : currentPosition.add(direction.scale(movementDistance));
         return {
           ...sleigh,
           position: nextPosition,
