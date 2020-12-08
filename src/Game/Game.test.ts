@@ -4,6 +4,7 @@ import { PixelPerTick } from "../models/PixelPerTick";
 import { Pixel } from "../models/Pixel";
 import { Command } from "../sleighs/Command";
 import { State } from "../components/Display/State";
+import { actions } from "../sleighs/slice";
 
 describe("Game", () => {
   const initialState: State = {
@@ -36,7 +37,20 @@ describe("Game", () => {
   describe("#sleighs", () => {
     it("returns the currently available sleighs", () => {
       const game = new Game(store);
-      expect(game.sleighs).toEqual(initialState.sleighs);
+      expect(game.sleighs[0]).toMatchObject(initialState.sleighs[0]);
+    });
+
+    it("allows to move sleighs", () => {
+      const dispatchSpy = jest.spyOn(store, "dispatch");
+      const game = new Game(store);
+      const targetPosition = { x: 1 as Pixel, y: 1 as Pixel };
+      game.sleighs[0].moveTo(targetPosition);
+      expect(dispatchSpy).toHaveBeenCalledWith(
+        actions.moveSleigh({
+          sleighId: game.sleighs[0].id,
+          targetPosition,
+        })
+      );
     });
   });
 
