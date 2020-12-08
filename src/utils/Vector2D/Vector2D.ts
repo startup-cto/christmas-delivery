@@ -8,17 +8,17 @@ export class Vector2D {
   readonly x: Pixel;
   readonly y: Pixel;
 
-  constructor(x: number, y: number) {
+  constructor({ x, y }: { x: number; y: number }) {
     this.y = y as Pixel;
     this.x = x as Pixel;
   }
 
   add(vector2D: Vector2D): Vector2D {
-    return new Vector2D(this.x + vector2D.x, this.y + vector2D.y);
+    return new Vector2D({ x: this.x + vector2D.x, y: this.y + vector2D.y });
   }
 
   scale(factor: number): Vector2D {
-    return new Vector2D(factor * this.x, factor * this.y);
+    return new Vector2D({ x: factor * this.x, y: factor * this.y });
   }
 
   normalize() {
