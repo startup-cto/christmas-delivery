@@ -1,5 +1,5 @@
 import { actions as worldActions } from "../world/slice";
-import { reducer } from "./slice";
+import { actions, reducer } from "./slice";
 import { PixelPerTick } from "../models/PixelPerTick";
 import { Pixel } from "../models/Pixel";
 
@@ -86,6 +86,39 @@ describe("sleighs", () => {
       ).toContainEqual(
         expect.objectContaining({
           position: targetPosition,
+        })
+      );
+    });
+  });
+
+  describe("actions.moveSleigh", () => {
+    it("enqueues a move command", () => {
+      const sleigh = {
+        id: "1",
+        position: {
+          x: 0 as Pixel,
+          y: 0 as Pixel,
+        },
+        maxSpeed: 10 as PixelPerTick,
+        commands: [],
+      };
+      const targetPosition = { x: 1 as Pixel, y: 1 as Pixel };
+      expect(
+        reducer(
+          [sleigh],
+          actions.moveSleigh({
+            targetPosition,
+            sleighId: sleigh.id,
+          })
+        )
+      ).toContainEqual(
+        expect.objectContaining({
+          commands: [
+            {
+              name: "move",
+              payload: targetPosition,
+            },
+          ],
         })
       );
     });
