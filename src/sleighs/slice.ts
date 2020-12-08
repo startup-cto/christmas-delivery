@@ -56,7 +56,7 @@ export const { actions, reducer } = createSlice({
             : currentPosition.add(direction.scale(movementDistance));
         return {
           ...sleigh,
-          position: nextPosition,
+          position: nextPosition.toJSON(),
         };
       })
     );

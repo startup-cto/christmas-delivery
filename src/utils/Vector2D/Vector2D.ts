@@ -28,4 +28,11 @@ export class Vector2D {
   subtract(vector2D: Vector2D): Vector2D {
     return new Vector2D({ x: this.x - vector2D.x, y: this.y - vector2D.y });
   }
+
+  toJSON(): { x: Pixel; y: Pixel } {
+    return {
+      x: this.x,
+      y: this.y,
+    };
+  }
 }

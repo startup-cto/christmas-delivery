@@ -1,4 +1,3 @@
-import { Pixel } from "../../models/Pixel";
 import { Vector2D } from "./Vector2D";
 
 describe("Vector2D", () => {
@@ -51,6 +50,19 @@ describe("Vector2D", () => {
           y: 0,
         }).normalize()
       ).toEqual(new Vector2D({ x: 1, y: 0 }));
+    });
+  });
+
+  describe("#toJSON", () => {
+    it("returns an object with x and y only", () => {
+      expect(
+        Object.getPrototypeOf(
+          new Vector2D({
+            x: 1,
+            y: 0,
+          }).toJSON()
+        )
+      ).toEqual({});
     });
   });
 });
