@@ -15,4 +15,14 @@ describe("Vector2D", () => {
       expect(new Vector2D(3 as Pixel, 4 as Pixel).length).toBe(5);
     });
   });
+
+  describe("#add", () => {
+    it("returns (1,1) when adding (1,0) to (0,1)", () => {
+      expect(
+        new Vector2D(1 as Pixel, 0 as Pixel).add(
+          new Vector2D(0 as Pixel, 1 as Pixel)
+        )
+      ).toEqual(new Vector2D(1 as Pixel, 1 as Pixel));
+    });
+  });
 });
