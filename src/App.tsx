@@ -21,7 +21,11 @@ export function App() {
   const { store } = useContext(ReactReduxContext);
   const hasWon = useSelector((state: State) => state.currentLevel.isCompleted);
   const [code, setCode] = useState(
-    "game.sleighs[0].moveTo(game.houses[0].position)"
+    `const sleigh = game.sleighs[0];
+const house = game.houses[0];
+const positionOfHouse = house.position;
+const someRandomPosition = { x: 300, y: 300 };
+sleigh.moveTo(someRandomPosition);`
   );
   function runCode(event: ChangeEvent<unknown>) {
     event.preventDefault();
@@ -39,6 +43,10 @@ export function App() {
 
   return (
     <>
+      <div>
+        Santa needs to bring his presents to the children. Write code below to
+        help him.
+      </div>
       {hasWon && <div>{successMessage}</div>}
       <Display state={state} />
       <form>
@@ -47,7 +55,7 @@ export function App() {
           id="code"
           style={{
             display: "block",
-            height: "3rem",
+            height: "7rem",
             width: state.world.size.width,
             margin: "1rem",
           }}
