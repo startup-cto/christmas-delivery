@@ -29,7 +29,9 @@ export function App() {
   return (
     <>
       <Display state={state} />
+      <label htmlFor="code">Enter your code here</label>
       <textarea
+        name="code"
         style={{
           display: "block",
           height: "3rem",
