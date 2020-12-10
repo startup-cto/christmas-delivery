@@ -7,5 +7,6 @@ export interface State {
   sleighs: Sleigh[];
   world: {
     size: Size;
+    ticks: number;
   };
 }
