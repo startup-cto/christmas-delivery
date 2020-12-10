@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/static/js/main.5a0c655e.chunk.js",
-    "main.js.map": "/static/js/main.5a0c655e.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.a5c7f623.js",
-    "runtime-main.js.map": "/static/js/runtime-main.a5c7f623.js.map",
-    "static/js/2.066b1e33.chunk.js": "/static/js/2.066b1e33.chunk.js",
-    "static/js/2.066b1e33.chunk.js.map": "/static/js/2.066b1e33.chunk.js.map",
-    "static/js/3.dabfbfde.chunk.js": "/static/js/3.dabfbfde.chunk.js",
-    "static/js/3.dabfbfde.chunk.js.map": "/static/js/3.dabfbfde.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.6dea0f05.chunk.css.map": "/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.066b1e33.chunk.js.LICENSE.txt": "/static/js/2.066b1e33.chunk.js.LICENSE.txt",
-    "static/media/sleigh.5439a825.png": "/static/media/sleigh.5439a825.png"
+    "main.css": "/christmas-delivery/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/christmas-delivery/static/js/main.5a0c655e.chunk.js",
+    "main.js.map": "/christmas-delivery/static/js/main.5a0c655e.chunk.js.map",
+    "runtime-main.js": "/christmas-delivery/static/js/runtime-main.a2ff7c58.js",
+    "runtime-main.js.map": "/christmas-delivery/static/js/runtime-main.a2ff7c58.js.map",
+    "static/js/2.066b1e33.chunk.js": "/christmas-delivery/static/js/2.066b1e33.chunk.js",
+    "static/js/2.066b1e33.chunk.js.map": "/christmas-delivery/static/js/2.066b1e33.chunk.js.map",
+    "static/js/3.dabfbfde.chunk.js": "/christmas-delivery/static/js/3.dabfbfde.chunk.js",
+    "static/js/3.dabfbfde.chunk.js.map": "/christmas-delivery/static/js/3.dabfbfde.chunk.js.map",
+    "index.html": "/christmas-delivery/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/christmas-delivery/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.066b1e33.chunk.js.LICENSE.txt": "/christmas-delivery/static/js/2.066b1e33.chunk.js.LICENSE.txt",
+    "static/media/sleigh.5439a825.png": "/christmas-delivery/static/media/sleigh.5439a825.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.a5c7f623.js",
+    "static/js/runtime-main.a2ff7c58.js",
     "static/js/2.066b1e33.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
     "static/js/main.5a0c655e.chunk.js"
