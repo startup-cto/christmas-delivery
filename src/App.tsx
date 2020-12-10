@@ -1,10 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
+import { ReactReduxContext, useDispatch, useSelector } from "react-redux";
 import { State } from "./components/Display/State";
 import { Display } from "./components/Display/Display";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import { actions as worldActions } from "./world/slice";
 import { Game } from "./Game/Game";
-import { store } from "./store";
 import { executeCode } from "./executeCode/executeCode";
 
 import {
@@ -15,6 +14,8 @@ import {
 
 export function App() {
   const state = useSelector((state: State) => state);
+  const { store } = useContext(ReactReduxContext);
+  const hasWon = useSelector((state: State) => state.currentLevel.isCompleted);
   const [code, setCode] = useState(
     "game.sleighs[0].moveTo(game.houses[0].position)"
   );
@@ -35,7 +36,7 @@ export function App() {
 
   return (
     <>
-      <div>{successMessage}</div>
+      {hasWon && <div>{successMessage}</div>}
       <Display state={state} />
       <form>
         <label htmlFor="code">{codeInputLabel}</label>

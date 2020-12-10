@@ -1,11 +1,11 @@
 import React from "react";
 import { App } from "./App";
 import { Provider } from "react-redux";
-import { store } from "./store";
+import { createStore } from "./store";
 
 function ConnectedApp() {
   return (
-    <Provider store={store}>
+    <Provider store={createStore()}>
       <App />
     </Provider>
   );
