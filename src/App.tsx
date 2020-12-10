@@ -35,7 +35,7 @@ export function App() {
       1000 / fps
     );
     return () => clearInterval(timer);
-  }, [dispatch, fps]);
+  }, [dispatch, fps, ticksPerFrame]);
 
   return (
     <>
