@@ -65,4 +65,18 @@ describe("Vector2D", () => {
       ).toEqual({});
     });
   });
+
+  describe("#equals", () => {
+    it("returns true for two vectors with the same x and y", () => {
+      expect(
+        new Vector2D({ x: 1, y: 1 }).equals(new Vector2D({ x: 1, y: 1 }))
+      ).toBe(true);
+    });
+
+    it("returns false for two vectors with different y", () => {
+      expect(
+        new Vector2D({ x: 1, y: 0 }).equals(new Vector2D({ x: 1, y: 1 }))
+      ).toBe(false);
+    });
+  });
 });

@@ -35,4 +35,8 @@ export class Vector2D {
       y: this.y,
     };
   }
+
+  equals(vector2D: { x: Pixel; y: Pixel }): boolean {
+    return this.x === vector2D.x && this.y === vector2D.y;
+  }
 }
