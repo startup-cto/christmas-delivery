@@ -12,9 +12,11 @@ import {
   successMessage,
 } from "./locale/en/main.json";
 import { useFPS } from "./world/useFPS";
+import { useTicksPerFrame } from "./world/useTicksPerFrame";
 
 export function App() {
   const fps = useFPS();
+  const ticksPerFrame = useTicksPerFrame();
   const state = useSelector((state: State) => state);
   const { store } = useContext(ReactReduxContext);
   const hasWon = useSelector((state: State) => state.currentLevel.isCompleted);
@@ -29,7 +31,7 @@ export function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     const timer = setInterval(
-      () => dispatch(worldActions.waitTicks(1)),
+      () => dispatch(worldActions.waitTicks(ticksPerFrame)),
       1000 / fps
     );
     return () => clearInterval(timer);

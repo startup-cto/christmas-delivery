@@ -10,6 +10,7 @@ export const { reducer, actions } = createSlice({
       height: 600 as Pixel,
     },
     ticks: 0,
+    ticksPerFrame: 1,
   },
   reducers: {
     waitTicks: (state, action: PayloadAction<number>) => ({

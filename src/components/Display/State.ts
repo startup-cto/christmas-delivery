@@ -12,5 +12,6 @@ export interface State {
     fps: number;
     size: Size;
     ticks: number;
+    ticksPerFrame: number;
   };
 }
