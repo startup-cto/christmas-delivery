@@ -9,6 +9,7 @@ export interface State {
   houses: House[];
   sleighs: Sleigh[];
   world: {
+    fps: number;
     size: Size;
     ticks: number;
   };

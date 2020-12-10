@@ -4,6 +4,7 @@ import { Pixel } from "../models/Pixel";
 export const { reducer, actions } = createSlice({
   name: "world",
   initialState: {
+    fps: 50,
     size: {
       width: 800 as Pixel,
       height: 600 as Pixel,

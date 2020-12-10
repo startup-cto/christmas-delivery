@@ -11,8 +11,10 @@ import {
   runCodeButtonLabel,
   successMessage,
 } from "./locale/en/main.json";
+import { useFPS } from "./world/useFPS";
 
 export function App() {
+  const fps = useFPS();
   const state = useSelector((state: State) => state);
   const { store } = useContext(ReactReduxContext);
   const hasWon = useSelector((state: State) => state.currentLevel.isCompleted);
@@ -26,13 +28,12 @@ export function App() {
   }
   const dispatch = useDispatch();
   useEffect(() => {
-    const fps = 50;
     const timer = setInterval(
       () => dispatch(worldActions.waitTicks(1)),
       1000 / fps
     );
     return () => clearInterval(timer);
-  }, [dispatch]);
+  }, [dispatch, fps]);
 
   return (
     <>
