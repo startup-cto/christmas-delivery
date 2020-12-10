@@ -8,31 +8,41 @@ import {
 } from "./locale/en/main.json";
 import { App } from "./App";
 import { Provider } from "react-redux";
-import { FunctionComponent } from "react";
+import { PropsWithChildren } from "react";
 import { createStore } from "./store";
+import { actions as worldActions } from "./world/slice";
 
-const MockProvider: FunctionComponent = ({ children }) => (
-  <Provider store={createStore()}>{children}</Provider>
-);
+function getMockProvider(store = createStore()) {
+  return ({ children }: PropsWithChildren<unknown>) => (
+    <Provider store={store}>{children}</Provider>
+  );
+}
 
 describe("ConnectedApp", () => {
   it("shows a level complete message when running a viable solution", async () => {
     const solution = "game.sleighs[0].moveTo(game.houses[0].position)";
+
+    const store = createStore();
+    store.dispatch(
+      worldActions.updateWorldState({
+        fps: 100,
+        ticksPerFrame: 1000,
+      })
+    );
     const { findByLabelText, findByText } = render(<App />, {
-      wrapper: MockProvider,
+      wrapper: getMockProvider(store),
     });
     const codeBox = await findByLabelText(codeInputLabel);
     userEvent.clear(codeBox);
     userEvent.type(codeBox, solution);
     const runCodeButton = await findByText(runCodeButtonLabel);
     userEvent.click(runCodeButton);
-    await new Promise((resolve) => setTimeout(resolve, 20000));
     expect(await findByText(successMessage)).toBeInTheDocument();
-  }, 25000);
+  });
 
   it("does not show a level complete message when running no code at all", async () => {
     const { findByLabelText, findByText, queryByText } = render(<App />, {
-      wrapper: MockProvider,
+      wrapper: getMockProvider(),
     });
     const codeBox = await findByLabelText(codeInputLabel);
     userEvent.clear(codeBox);
