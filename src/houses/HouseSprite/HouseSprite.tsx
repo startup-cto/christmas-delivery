@@ -7,10 +7,10 @@ import { Position } from "../../models/Position";
 const houseSpriteSheetMetaData = {
   source: houseSpriteSheet,
   size: {
-    width: 100 as Pixel,
-    height: 100 as Pixel,
+    width: 64 as Pixel,
+    height: 96 as Pixel,
   },
-  frames: 1,
+  frames: 11,
   states: ["idle"] as const,
 };
 
