@@ -2,13 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Pixel } from "../models/Pixel";
 
 const initialState = {
-  fps: 50,
+  fps: 10,
   size: {
     width: 800 as Pixel,
     height: 600 as Pixel,
   },
   ticks: 0,
-  ticksPerFrame: 1,
+  ticksPerFrame: 10,
 };
 export const { reducer, actions } = createSlice({
   name: "world",

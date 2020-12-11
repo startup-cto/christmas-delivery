@@ -1,6 +1,7 @@
 import { Position } from "../../models/Position";
 import React from "react";
 import { SpriteSheet } from "./SpriteSheet";
+import { useFrame } from "../../world/useFrame";
 
 interface Props<State> {
   position: Position;
@@ -13,7 +14,7 @@ export function Sprite<State>({
   state,
   spriteSheet,
 }: Props<State>) {
-  const frame = 0;
+  const frame = useFrame() % spriteSheet.frames;
   const { width, height } = spriteSheet.size;
   const row = spriteSheet.states.findIndex((el) => el === state);
   const xOffset = -1 * frame * width;
