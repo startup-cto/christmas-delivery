@@ -17,6 +17,21 @@ import {
 import { useFPS } from "./world/useFPS";
 import { useTicksPerFrame } from "./world/useTicksPerFrame";
 import { ProjectDescription } from "./ProjectDescription/ProjectDescription";
+import styled from "styled-components";
+
+const Container = styled.div`
+  & {
+    display: grid;
+    grid-template-columns: minmax(1rem, auto) minmax(0px, 768px) minmax(
+        1rem,
+        auto
+      );
+  }
+
+  & main {
+    grid-column-start: 2;
+  }
+`;
 
 export function App() {
   const fps = useFPS();
@@ -46,26 +61,28 @@ sleigh.moveTo(someRandomPosition);`
   }, [dispatch, fps, ticksPerFrame]);
 
   return (
-    <>
-      <div>{rulesExplanation}</div>
-      {hasWon && <div>{successMessage}</div>}
-      <Display state={state} />
-      <form>
-        <label htmlFor="code">{codeInputLabel}</label>
-        <textarea
-          id="code"
-          style={{
-            display: "block",
-            height: "7rem",
-            width: state.world.size.width,
-            margin: "1rem",
-          }}
-          value={code}
-          onChange={(event) => setCode(event.target.value)}
-        />
-        <button onClick={runCode}>{runCodeButtonLabel}</button>
-      </form>
-      <ProjectDescription />
-    </>
+    <Container>
+      <main>
+        <div>{rulesExplanation}</div>
+        {hasWon && <div>{successMessage}</div>}
+        <Display state={state} />
+        <form>
+          <label htmlFor="code">{codeInputLabel}</label>
+          <textarea
+            id="code"
+            style={{
+              display: "block",
+              height: "7rem",
+              width: state.world.size.width,
+              margin: "1rem",
+            }}
+            value={code}
+            onChange={(event) => setCode(event.target.value)}
+          />
+          <button onClick={runCode}>{runCodeButtonLabel}</button>
+        </form>
+        <ProjectDescription />
+      </main>
+    </Container>
   );
 }

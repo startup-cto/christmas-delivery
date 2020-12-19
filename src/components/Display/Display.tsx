@@ -12,8 +12,6 @@ export function Display({ state }: Props) {
     <div
       style={{
         position: "relative",
-        border: "solid 1px black",
-        margin: "1rem",
         width: state.world.size.width,
         height: state.world.size.height,
       }}
