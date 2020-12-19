@@ -1,6 +1,7 @@
 {
   "codeInputLabel": "Enter your code here",
-  "explanation": "Santa needs to bring his presents to the children. Write code below to help him.",
+  "rulesExplanation": "Santa needs to bring his presents to the children. Write code below to help him.",
+  "projectDescription": "This is an early stage prototype for an open-source React-Redux coding game that is live coded on Twitch.",
   "runCodeButtonLabel": "Run code",
   "successMessage": "You have won!",
   "twitchLinkText": "Watch the development of this game on Twitch",

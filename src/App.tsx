@@ -8,7 +8,8 @@ import { executeCode } from "./executeCode/executeCode";
 
 import {
   codeInputLabel,
-  explanation,
+  projectDescription,
+  rulesExplanation,
   githubLinkText,
   runCodeButtonLabel,
   successMessage,
@@ -46,7 +47,8 @@ sleigh.moveTo(someRandomPosition);`
 
   return (
     <>
-      <div>{explanation}</div>
+      <div>{rulesExplanation}</div>
+      <div>{projectDescription}</div>
       <a href="https://www.twitch.tv/the_startup_cto">{twitchLinkText}</a>
       <a href="https://github.com/startup-cto/christmas-delivery">
         {githubLinkText}
