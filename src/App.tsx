@@ -9,8 +9,10 @@ import { executeCode } from "./executeCode/executeCode";
 import {
   codeInputLabel,
   explanation,
+  githubLinkText,
   runCodeButtonLabel,
   successMessage,
+  twitchLinkText,
 } from "./locale/en/main.json";
 import { useFPS } from "./world/useFPS";
 import { useTicksPerFrame } from "./world/useTicksPerFrame";
@@ -45,6 +47,10 @@ sleigh.moveTo(someRandomPosition);`
   return (
     <>
       <div>{explanation}</div>
+      <a href="https://www.twitch.tv/the_startup_cto">{twitchLinkText}</a>
+      <a href="https://github.com/startup-cto/christmas-delivery">
+        {githubLinkText}
+      </a>
       {hasWon && <div>{successMessage}</div>}
       <Display state={state} />
       <form>
