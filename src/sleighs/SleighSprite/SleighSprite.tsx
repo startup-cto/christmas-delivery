@@ -7,11 +7,11 @@ import { Sleigh } from "../Sleigh";
 const sleighSpriteSheetMetaData = {
   source: sleighSpriteSheet,
   size: {
-    width: 250 as Pixel,
-    height: 125 as Pixel,
+    width: 256 as Pixel,
+    height: 128 as Pixel,
   },
-  frames: 6,
-  states: ["idle", "moving", "crashing", "burning"] as const,
+  frames: 1,
+  states: ["idle"] as const,
 };
 
 export interface Props {
