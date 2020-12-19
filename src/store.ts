@@ -2,7 +2,7 @@ import { AnyAction, combineReducers, configureStore } from "@reduxjs/toolkit";
 import { reducer as currentLevel } from "./currentLevel/slice";
 import { reducer as houses } from "./houses/slice";
 import { reducer as sleighs } from "./sleighs/slice";
-import { reducer as world } from "./world/slice";
+import { actions, reducer as world } from "./world/slice";
 import { State } from "./components/Display/State";
 import { Vector2D } from "./utils/Vector2D/Vector2D";
 
@@ -24,6 +24,9 @@ function checkWinCondition(state: State, action: AnyAction): State {
 
 export function createStore() {
   return configureStore({
+    devTools: {
+      actionsBlacklist: [actions.waitTicks.toString()],
+    },
     reducer: (state, action) => {
       const intermediateState = combineReducers({
         currentLevel,
