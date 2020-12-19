@@ -8,6 +8,7 @@ import { executeCode } from "./executeCode/executeCode";
 
 import {
   codeInputLabel,
+  explanation,
   runCodeButtonLabel,
   successMessage,
 } from "./locale/en/main.json";
@@ -43,10 +44,7 @@ sleigh.moveTo(someRandomPosition);`
 
   return (
     <>
-      <div>
-        Santa needs to bring his presents to the children. Write code below to
-        help him.
-      </div>
+      <div>{explanation}</div>
       {hasWon && <div>{successMessage}</div>}
       <Display state={state} />
       <form>

@@ -1,5 +1,6 @@
 {
   "codeInputLabel": "Enter your code here",
+  "explanation": "Santa needs to bring his presents to the children. Write code below to help him.",
   "runCodeButtonLabel": "Run code",
   "successMessage": "You have won!"
 }
