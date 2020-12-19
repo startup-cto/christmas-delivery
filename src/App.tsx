@@ -6,17 +6,17 @@ import { actions as worldActions } from "./world/slice";
 import { Game } from "./Game/Game";
 import { executeCode } from "./executeCode/executeCode";
 
+import "@fortawesome/fontawesome-free/css/brands.css";
+
 import {
   codeInputLabel,
-  projectDescription,
   rulesExplanation,
-  githubLinkText,
   runCodeButtonLabel,
   successMessage,
-  twitchLinkText,
 } from "./locale/en/main.json";
 import { useFPS } from "./world/useFPS";
 import { useTicksPerFrame } from "./world/useTicksPerFrame";
+import { ProjectDescription } from "./ProjectDescription/ProjectDescription";
 
 export function App() {
   const fps = useFPS();
@@ -48,11 +48,6 @@ sleigh.moveTo(someRandomPosition);`
   return (
     <>
       <div>{rulesExplanation}</div>
-      <div>{projectDescription}</div>
-      <a href="https://www.twitch.tv/the_startup_cto">{twitchLinkText}</a>
-      <a href="https://github.com/startup-cto/christmas-delivery">
-        {githubLinkText}
-      </a>
       {hasWon && <div>{successMessage}</div>}
       <Display state={state} />
       <form>
@@ -70,6 +65,7 @@ sleigh.moveTo(someRandomPosition);`
         />
         <button onClick={runCode}>{runCodeButtonLabel}</button>
       </form>
+      <ProjectDescription />
     </>
   );
 }
