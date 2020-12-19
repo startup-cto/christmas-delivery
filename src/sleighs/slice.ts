@@ -16,7 +16,7 @@ export const { actions, reducer } = createSlice({
         x: 400 as Pixel,
         y: 300 as Pixel,
       },
-      commands: [] as Command[],
+      command: null as Command | null,
     },
   ],
   reducers: {
@@ -28,13 +28,10 @@ export const { actions, reducer } = createSlice({
         sleigh.id === action.payload.sleighId
           ? {
               ...sleigh,
-              commands: [
-                ...sleigh.commands,
-                {
-                  name: "move",
-                  payload: action.payload.targetPosition,
-                },
-              ],
+              command: {
+                name: "move",
+                payload: action.payload.targetPosition,
+              },
             }
           : sleigh
       );
@@ -43,10 +40,9 @@ export const { actions, reducer } = createSlice({
   extraReducers: (builder) => {
     builder.addCase(worldActions.waitTicks, (state, action) =>
       state.map((sleigh) => {
-        if (sleigh.commands.length === 0) return sleigh;
-        const currentCommand = sleigh.commands[0];
+        if (sleigh.command === null) return sleigh;
         const currentPosition = new Vector2D(sleigh.position);
-        const targetPosition = new Vector2D(currentCommand.payload);
+        const targetPosition = new Vector2D(sleigh.command.payload);
         const movementNeeded = targetPosition.subtract(currentPosition);
         const direction = movementNeeded.normalize();
         const movementDistance = sleigh.maxSpeed * action.payload;

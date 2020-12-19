@@ -8,6 +8,9 @@ import { actions } from "../sleighs/slice";
 
 describe("Game", () => {
   const initialState: State = {
+    currentLevel: {
+      isCompleted: false,
+    },
     houses: [
       {
         id: "1",
@@ -17,7 +20,12 @@ describe("Game", () => {
         },
       },
     ],
-    world: { size: { width: 100 as Pixel, height: 100 as Pixel } },
+    world: {
+      fps: 10,
+      size: { width: 100 as Pixel, height: 100 as Pixel },
+      ticks: 0,
+      ticksPerFrame: 1,
+    },
     sleighs: [
       {
         id: "1",
@@ -26,7 +34,7 @@ describe("Game", () => {
           x: 0 as Pixel,
           y: 0 as Pixel,
         },
-        commands: [] as Command[],
+        command: null as null | Command,
       },
     ],
   };

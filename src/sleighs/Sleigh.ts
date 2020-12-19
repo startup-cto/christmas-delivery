@@ -6,5 +6,5 @@ export interface Sleigh {
   id: string;
   position: Position;
   maxSpeed: PixelPerTick;
-  commands: Command[];
+  command: Command | null;
 }

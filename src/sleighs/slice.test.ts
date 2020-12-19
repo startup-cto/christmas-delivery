@@ -13,7 +13,7 @@ describe("sleighs", () => {
       const sleighWithoutCommands = {
         id: "1",
         maxSpeed: 1 as PixelPerTick,
-        commands: [],
+        command: null,
         position: {
           x: 100 as Pixel,
           y: 100 as Pixel,
@@ -31,15 +31,13 @@ describe("sleighs", () => {
             {
               id: "1",
               maxSpeed: 1 as PixelPerTick,
-              commands: [
-                {
-                  name: "move",
-                  payload: {
-                    x: 100 as Pixel,
-                    y: 0 as Pixel,
-                  },
+              command: {
+                name: "move",
+                payload: {
+                  x: 100 as Pixel,
+                  y: 0 as Pixel,
                 },
-              ],
+              },
               position: {
                 x: 0 as Pixel,
                 y: 0 as Pixel,
@@ -69,12 +67,10 @@ describe("sleighs", () => {
             {
               id: "1",
               maxSpeed: 100 as PixelPerTick,
-              commands: [
-                {
-                  name: "move",
-                  payload: targetPosition,
-                },
-              ],
+              command: {
+                name: "move",
+                payload: targetPosition,
+              },
               position: {
                 x: 0 as Pixel,
                 y: 0 as Pixel,
@@ -92,7 +88,7 @@ describe("sleighs", () => {
   });
 
   describe("actions.moveSleigh", () => {
-    it("enqueues a move command", () => {
+    it("sets a move command", () => {
       const sleigh = {
         id: "1",
         position: {
@@ -100,7 +96,7 @@ describe("sleighs", () => {
           y: 0 as Pixel,
         },
         maxSpeed: 10 as PixelPerTick,
-        commands: [],
+        command: null,
       };
       const targetPosition = { x: 1 as Pixel, y: 1 as Pixel };
       expect(
@@ -113,12 +109,10 @@ describe("sleighs", () => {
         )
       ).toContainEqual(
         expect.objectContaining({
-          commands: [
-            {
-              name: "move",
-              payload: targetPosition,
-            },
-          ],
+          command: {
+            name: "move",
+            payload: targetPosition,
+          },
         })
       );
     });

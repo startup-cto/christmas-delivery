@@ -6,13 +6,13 @@ import { AnyAction } from "@reduxjs/toolkit";
 import { actions } from "../sleighs/slice";
 
 export class MovableSleigh implements Sleigh {
-  public commands: Command[];
+  public command: Command | null;
   public id: string;
   public maxSpeed: PixelPerTick;
   public position: Position;
 
   constructor(sleigh: Sleigh, private dispatch: (action: AnyAction) => void) {
-    this.commands = sleigh.commands;
+    this.command = sleigh.command;
     this.id = sleigh.id;
     this.maxSpeed = sleigh.maxSpeed;
     this.position = sleigh.position;
