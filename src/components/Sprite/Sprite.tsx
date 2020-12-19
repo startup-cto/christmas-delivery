@@ -4,12 +4,14 @@ import { SpriteSheet } from "./SpriteSheet";
 import { useFrame } from "../../world/useFrame";
 
 interface Props<State> {
+  mirror?: boolean;
   position: Position;
   state: State;
   spriteSheet: SpriteSheet<State>;
 }
 
 export function Sprite<State>({
+  mirror = false,
   position: { x, y },
   state,
   spriteSheet,
@@ -30,6 +32,7 @@ export function Sprite<State>({
         backgroundImage: `url(${spriteSheet.source})`,
         backgroundPositionX: xOffset,
         backgroundPositionY: yOffset,
+        transform: `scaleX(${mirror ? -1 : 1})`,
       }}
     />
   );
