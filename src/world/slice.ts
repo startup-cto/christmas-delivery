@@ -7,6 +7,7 @@ const initialState = {
     width: 800 as Pixel,
     height: 400 as Pixel,
   },
+  isRunning: false,
   ticks: 0,
   ticksPerFrame: 10,
 };
@@ -17,7 +18,10 @@ export const { reducer, actions } = createSlice({
   name: "world",
   initialState,
   reducers: {
-    runGame: (state, action: PayloadAction<State>) => action.payload,
+    runGame: (
+      state,
+      action: PayloadAction<Pick<State, "fps" | "size" | "ticksPerFrame">>
+    ) => ({ ...action.payload, isRunning: true, ticks: 0 }),
     updateWorldState: (state, action: PayloadAction<Partial<State>>) => ({
       ...state,
       ...action.payload,

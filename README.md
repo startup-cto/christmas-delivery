@@ -20,6 +20,7 @@ This project can be installed with `npm install`, started with `npm start` and t
 - [X] Move state definition into one spot
 - [X] Make sleigh look into direction of moving
 - [ ] Add a timer for losing the game
+- [ ] Shrink sleigh by factor 2
 - [ ] Overlay success message on top of display
 - [ ] Beautify UI
 - [ ] Add background to the display

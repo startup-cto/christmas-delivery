@@ -1,6 +1,6 @@
 import { ReactReduxContext, useDispatch, useSelector } from "react-redux";
 import { Display } from "./components/Display/Display";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { actions as worldActions } from "./world/slice";
 import { Game } from "./Game/Game";
 import { executeCode } from "./executeCode/executeCode";
@@ -11,6 +11,7 @@ import styled from "styled-components";
 import { State } from "./store";
 import { CodeEditor } from "./components/CodeEditor/CodeEditor";
 import { Pixel } from "./models/Pixel";
+import { selectIsRunning } from "./world/selectors/selectIsRunning";
 
 const Container = styled.div`
   & {
@@ -28,20 +29,8 @@ const Container = styled.div`
 
 export function App() {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(
-      worldActions.runGame({
-        fps: 10,
-        size: {
-          width: 800 as Pixel,
-          height: 400 as Pixel,
-        },
-        ticks: 0,
-        ticksPerFrame: 10,
-      })
-    );
-  }, [dispatch]);
   const { store } = useContext(ReactReduxContext);
+  const isRunning = useSelector(selectIsRunning);
   const hasWon = useSelector((state: State) => state.currentLevel.isCompleted);
   const [code, setCode] = useState(
     `const sleigh = game.sleighs[0];
@@ -53,6 +42,16 @@ sleigh.moveTo(someRandomPosition);`
   function runCode() {
     const game = new Game(store);
     executeCode(code, game);
+    dispatch(
+      worldActions.runGame({
+        fps: 10,
+        size: {
+          width: 800 as Pixel,
+          height: 400 as Pixel,
+        },
+        ticksPerFrame: 10,
+      })
+    );
   }
 
   return (
@@ -61,7 +60,12 @@ sleigh.moveTo(someRandomPosition);`
         <div>{rulesExplanation}</div>
         <Display />
         {hasWon && <div>{successMessage}</div>}
-        <CodeEditor code={code} onCodeChange={setCode} onRun={runCode} />
+        <CodeEditor
+          code={code}
+          onCodeChange={setCode}
+          onRun={runCode}
+          disabled={isRunning}
+        />
         <ProjectDescription />
       </main>
     </Container>

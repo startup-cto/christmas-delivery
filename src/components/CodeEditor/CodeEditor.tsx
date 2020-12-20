@@ -7,11 +7,13 @@ import "ace-builds/src-noconflict/theme-monokai";
 
 interface Props {
   code: string;
+  disabled?: boolean;
   onCodeChange: (value: ((prevState: string) => string) | string) => void;
   onRun: () => void;
 }
 
 export const CodeEditor: FunctionComponent<Props> = ({
+  disabled = false,
   onCodeChange,
   onRun,
   code,
@@ -20,6 +22,7 @@ export const CodeEditor: FunctionComponent<Props> = ({
     <label>
       {codeInputLabel}
       <AceEditor
+        readOnly={disabled}
         value={code}
         mode="javascript"
         theme="monokai"
@@ -32,6 +35,7 @@ export const CodeEditor: FunctionComponent<Props> = ({
       />
     </label>
     <button
+      disabled={disabled}
       onClick={(event) => {
         event.preventDefault();
         onRun();
