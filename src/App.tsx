@@ -1,27 +1,19 @@
 import { ReactReduxContext, useDispatch, useSelector } from "react-redux";
 import { Display } from "./components/Display/Display";
-import React, { ChangeEvent, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { actions as worldActions } from "./world/slice";
 import { Game } from "./Game/Game";
 import { executeCode } from "./executeCode/executeCode";
-import AceEditor from "react-ace";
-
-import "ace-builds/src-noconflict/mode-javascript";
-import "ace-builds/src-noconflict/theme-monokai";
 
 import "@fortawesome/fontawesome-free/css/brands.css";
 
-import {
-  codeInputLabel,
-  rulesExplanation,
-  runCodeButtonLabel,
-  successMessage,
-} from "./locale/en/main.json";
+import { rulesExplanation, successMessage } from "./locale/en/main.json";
 import { useFPS } from "./world/useFPS";
 import { useTicksPerFrame } from "./world/useTicksPerFrame";
 import { ProjectDescription } from "./ProjectDescription/ProjectDescription";
 import styled from "styled-components";
 import { State } from "./store";
+import { CodeEditor } from "./components/CodeEditor/CodeEditor";
 
 const Container = styled.div`
   & {
@@ -49,8 +41,7 @@ const positionOfHouse = house.position;
 const someRandomPosition = { x: 300, y: 300 };
 sleigh.moveTo(someRandomPosition);`
   );
-  function runCode(event: ChangeEvent<unknown>) {
-    event.preventDefault();
+  function runCode() {
     const game = new Game(store);
     executeCode(code, game);
   }
@@ -69,23 +60,7 @@ sleigh.moveTo(someRandomPosition);`
         <div>{rulesExplanation}</div>
         <Display />
         {hasWon && <div>{successMessage}</div>}
-        <form>
-          <label>
-            {codeInputLabel}
-            <AceEditor
-              value={code}
-              mode="javascript"
-              theme="monokai"
-              onChange={setCode}
-              height="5rem"
-              width="100%"
-              setOptions={{
-                useWorker: false,
-              }}
-            />
-          </label>
-          <button onClick={runCode}>{runCodeButtonLabel}</button>
-        </form>
+        <CodeEditor code={code} onCodeChange={setCode} onRun={runCode} />
         <ProjectDescription />
       </main>
     </Container>
