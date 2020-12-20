@@ -33,6 +33,8 @@ export function Sprite<State>({
         backgroundPositionX: xOffset,
         backgroundPositionY: yOffset,
         transform: `scaleX(${mirror ? -1 : 1})`,
+        transitionProperty: "left, top",
+        transitionDuration: "0.5s",
       }}
     />
   );
