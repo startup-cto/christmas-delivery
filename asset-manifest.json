@@ -1,23 +1,26 @@
 {
   "files": {
     "main.css": "/christmas-delivery/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/christmas-delivery/static/js/main.1a390833.chunk.js",
-    "main.js.map": "/christmas-delivery/static/js/main.1a390833.chunk.js.map",
-    "runtime-main.js": "/christmas-delivery/static/js/runtime-main.a2ff7c58.js",
-    "runtime-main.js.map": "/christmas-delivery/static/js/runtime-main.a2ff7c58.js.map",
-    "static/js/2.c2807cf3.chunk.js": "/christmas-delivery/static/js/2.c2807cf3.chunk.js",
-    "static/js/2.c2807cf3.chunk.js.map": "/christmas-delivery/static/js/2.c2807cf3.chunk.js.map",
-    "static/js/3.dabfbfde.chunk.js": "/christmas-delivery/static/js/3.dabfbfde.chunk.js",
-    "static/js/3.dabfbfde.chunk.js.map": "/christmas-delivery/static/js/3.dabfbfde.chunk.js.map",
+    "main.js": "/christmas-delivery/static/js/main.ee20e24a.chunk.js",
+    "main.js.map": "/christmas-delivery/static/js/main.ee20e24a.chunk.js.map",
+    "runtime-main.js": "/christmas-delivery/static/js/runtime-main.d447694a.js",
+    "runtime-main.js.map": "/christmas-delivery/static/js/runtime-main.d447694a.js.map",
+    "static/css/2.b96aff37.chunk.css": "/christmas-delivery/static/css/2.b96aff37.chunk.css",
+    "static/js/2.f8091321.chunk.js": "/christmas-delivery/static/js/2.f8091321.chunk.js",
+    "static/js/2.f8091321.chunk.js.map": "/christmas-delivery/static/js/2.f8091321.chunk.js.map",
+    "static/js/3.9568e8fa.chunk.js": "/christmas-delivery/static/js/3.9568e8fa.chunk.js",
+    "static/js/3.9568e8fa.chunk.js.map": "/christmas-delivery/static/js/3.9568e8fa.chunk.js.map",
     "index.html": "/christmas-delivery/index.html",
+    "static/css/2.b96aff37.chunk.css.map": "/christmas-delivery/static/css/2.b96aff37.chunk.css.map",
     "static/css/main.6dea0f05.chunk.css.map": "/christmas-delivery/static/css/main.6dea0f05.chunk.css.map",
-    "static/js/2.c2807cf3.chunk.js.LICENSE.txt": "/christmas-delivery/static/js/2.c2807cf3.chunk.js.LICENSE.txt",
-    "static/media/sleigh.5439a825.png": "/christmas-delivery/static/media/sleigh.5439a825.png"
+    "static/js/2.f8091321.chunk.js.LICENSE.txt": "/christmas-delivery/static/js/2.f8091321.chunk.js.LICENSE.txt",
+    "static/media/brands.css": "/christmas-delivery/static/media/fa-brands-400.ec82f282.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.a2ff7c58.js",
-    "static/js/2.c2807cf3.chunk.js",
+    "static/js/runtime-main.d447694a.js",
+    "static/css/2.b96aff37.chunk.css",
+    "static/js/2.f8091321.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.1a390833.chunk.js"
+    "static/js/main.ee20e24a.chunk.js"
   ]
 }
