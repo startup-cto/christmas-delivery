@@ -5,7 +5,7 @@ const initialState = {
   fps: 10,
   size: {
     width: 800 as Pixel,
-    height: 600 as Pixel,
+    height: 400 as Pixel,
   },
   ticks: 0,
   ticksPerFrame: 10,
