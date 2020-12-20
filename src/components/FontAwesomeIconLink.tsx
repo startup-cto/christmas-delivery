@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import "@fortawesome/fontawesome-free/css/brands.css";
 
 export const FontAwesomeIconLink = styled.a<{ iconUnicode: string }>`
   &:before {

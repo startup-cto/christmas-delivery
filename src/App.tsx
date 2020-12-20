@@ -5,8 +5,6 @@ import { actions as worldActions } from "./world/slice";
 import { Game } from "./Game/Game";
 import { executeCode } from "./executeCode/executeCode";
 
-import "@fortawesome/fontawesome-free/css/brands.css";
-
 import { rulesExplanation, successMessage } from "./locale/en/main.json";
 import { useFPS } from "./world/useFPS";
 import { useTicksPerFrame } from "./world/useTicksPerFrame";
