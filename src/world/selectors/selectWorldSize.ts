@@ -1,3 +1,3 @@
-import { State } from "../../components/Display/State";
+import { State } from "../../store";
 
 export const selectWorldSize = (state: State) => state.world.size;

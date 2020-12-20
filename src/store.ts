@@ -3,8 +3,16 @@ import { reducer as currentLevel } from "./currentLevel/slice";
 import { reducer as houses } from "./houses/slice";
 import { reducer as sleighs } from "./sleighs/slice";
 import { actions, reducer as world } from "./world/slice";
-import { State } from "./components/Display/State";
 import { Vector2D } from "./utils/Vector2D/Vector2D";
+
+const combinedReducer = combineReducers({
+  currentLevel,
+  houses,
+  sleighs,
+  world,
+});
+
+export type State = ReturnType<typeof combinedReducer>;
 
 function hasWon(state: State) {
   return new Vector2D(state.houses[0].position).equals(
@@ -28,12 +36,7 @@ export function createStore() {
       actionsBlacklist: [actions.waitTicks.toString()],
     },
     reducer: (state, action) => {
-      const intermediateState = combineReducers({
-        currentLevel,
-        houses,
-        sleighs,
-        world,
-      })(state, action);
+      const intermediateState = combinedReducer(state, action);
 
       return checkWinCondition(intermediateState, action);
     },

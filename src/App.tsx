@@ -1,5 +1,4 @@
 import { ReactReduxContext, useDispatch, useSelector } from "react-redux";
-import { State } from "./components/Display/State";
 import { Display } from "./components/Display/Display";
 import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import { actions as worldActions } from "./world/slice";
@@ -22,6 +21,7 @@ import { useFPS } from "./world/useFPS";
 import { useTicksPerFrame } from "./world/useTicksPerFrame";
 import { ProjectDescription } from "./ProjectDescription/ProjectDescription";
 import styled from "styled-components";
+import { State } from "./store";
 
 const Container = styled.div`
   & {

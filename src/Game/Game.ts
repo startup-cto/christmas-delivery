@@ -1,7 +1,7 @@
 import { Action, Store } from "@reduxjs/toolkit";
-import { State } from "../components/Display/State";
 import { House } from "../houses/House";
 import { MovableSleigh } from "./MovableSleigh";
+import { State } from "../store";
 
 export class Game {
   get houses(): House[] {

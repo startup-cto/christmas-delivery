@@ -3,8 +3,8 @@ import { Game } from "./Game";
 import { PixelPerTick } from "../models/PixelPerTick";
 import { Pixel } from "../models/Pixel";
 import { Command } from "../sleighs/Command";
-import { State } from "../components/Display/State";
 import { actions } from "../sleighs/slice";
+import { State } from "../store";
 
 describe("Game", () => {
   const initialState: State = {
