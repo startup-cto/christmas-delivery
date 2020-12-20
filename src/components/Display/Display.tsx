@@ -1,27 +1,21 @@
-import { State } from "./State";
 import React from "react";
-import { SleighSprite } from "../../sleighs/SleighSprite/SleighSprite";
-import { HouseSprite } from "../../houses/HouseSprite/HouseSprite";
+import { useSelector } from "react-redux";
+import { selectWorldSize } from "../../world/selectors/selectWorldSize";
+import { Houses } from "../../houses/Houses/Houses";
+import { Sleighs } from "../../sleighs/Sleighs/Sleighs";
 
-interface Props {
-  state: State;
-}
-
-export function Display({ state }: Props) {
+export function Display() {
+  const worldSize = useSelector(selectWorldSize);
   return (
     <div
       style={{
         position: "relative",
-        width: state.world.size.width,
-        height: state.world.size.height,
+        width: worldSize.width,
+        height: worldSize.height,
       }}
     >
-      {state.houses.map((house) => (
-        <HouseSprite key={house.id} position={house.position} state="idle" />
-      ))}
-      {state.sleighs.map((sleigh) => (
-        <SleighSprite key={sleigh.id} sleigh={sleigh} state="idle" />
-      ))}
+      <Houses />
+      <Sleighs />
     </div>
   );
 }

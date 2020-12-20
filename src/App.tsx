@@ -40,7 +40,6 @@ const Container = styled.div`
 export function App() {
   const fps = useFPS();
   const ticksPerFrame = useTicksPerFrame();
-  const state = useSelector((state: State) => state);
   const { store } = useContext(ReactReduxContext);
   const hasWon = useSelector((state: State) => state.currentLevel.isCompleted);
   const [code, setCode] = useState(
@@ -68,7 +67,7 @@ sleigh.moveTo(someRandomPosition);`
     <Container>
       <main>
         <div>{rulesExplanation}</div>
-        <Display state={state} />
+        <Display />
         {hasWon && <div>{successMessage}</div>}
         <form>
           <label>
