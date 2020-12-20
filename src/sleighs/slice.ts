@@ -3,8 +3,8 @@ import { PixelPerTick } from "../models/PixelPerTick";
 import { Pixel } from "../models/Pixel";
 import { actions as worldActions } from "../world/slice";
 import { Vector2D } from "../utils/Vector2D/Vector2D";
-import { Command } from "./Command";
 import { Position } from "../models/Position";
+import { Sleigh } from "./Sleigh";
 
 export const { actions, reducer } = createSlice({
   name: "sleighs",
@@ -16,9 +16,9 @@ export const { actions, reducer } = createSlice({
         x: 400 as Pixel,
         y: 300 as Pixel,
       },
-      command: null as Command | null,
+      command: null,
     },
-  ],
+  ] as Sleigh[],
   reducers: {
     moveSleigh(
       state,
