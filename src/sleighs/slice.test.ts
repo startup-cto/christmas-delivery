@@ -2,6 +2,7 @@ import { actions as worldActions } from "../world/slice";
 import { actions, reducer } from "./slice";
 import { PixelPerTick } from "../models/PixelPerTick";
 import { Pixel } from "../models/Pixel";
+import { MockSleigh } from "./MockSleigh";
 
 describe("sleighs", () => {
   describe("worldActions.waitTicks", () => {
@@ -10,15 +11,9 @@ describe("sleighs", () => {
     });
 
     it("does not change a sleigh without commands", () => {
-      const sleighWithoutCommands = {
-        id: "1",
-        maxSpeed: 1 as PixelPerTick,
+      const sleighWithoutCommands = new MockSleigh({
         command: null,
-        position: {
-          x: 100 as Pixel,
-          y: 100 as Pixel,
-        },
-      };
+      });
       expect(
         reducer([sleighWithoutCommands], worldActions.waitTicks(1))
       ).toEqual([sleighWithoutCommands]);
@@ -28,8 +23,7 @@ describe("sleighs", () => {
       expect(
         reducer(
           [
-            {
-              id: "1",
+            new MockSleigh({
               maxSpeed: 1 as PixelPerTick,
               command: {
                 name: "move",
@@ -42,7 +36,7 @@ describe("sleighs", () => {
                 x: 0 as Pixel,
                 y: 0 as Pixel,
               },
-            },
+            }),
           ],
           worldActions.waitTicks(1)
         )
@@ -64,8 +58,7 @@ describe("sleighs", () => {
       expect(
         reducer(
           [
-            {
-              id: "1",
+            new MockSleigh({
               maxSpeed: 100 as PixelPerTick,
               command: {
                 name: "move",
@@ -75,7 +68,7 @@ describe("sleighs", () => {
                 x: 0 as Pixel,
                 y: 0 as Pixel,
               },
-            },
+            }),
           ],
           worldActions.waitTicks(1)
         )
@@ -89,15 +82,9 @@ describe("sleighs", () => {
 
   describe("actions.moveSleigh", () => {
     it("sets a move command", () => {
-      const sleigh = {
-        id: "1",
-        position: {
-          x: 0 as Pixel,
-          y: 0 as Pixel,
-        },
-        maxSpeed: 10 as PixelPerTick,
+      const sleigh = new MockSleigh({
         command: null,
-      };
+      });
       const targetPosition = { x: 1 as Pixel, y: 1 as Pixel };
       expect(
         reducer(

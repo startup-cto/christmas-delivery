@@ -1,10 +1,9 @@
 import { AnyAction, createStore } from "@reduxjs/toolkit";
 import { Game } from "./Game";
-import { PixelPerTick } from "../models/PixelPerTick";
 import { Pixel } from "../models/Pixel";
-import { Command } from "../sleighs/Command";
 import { actions } from "../sleighs/slice";
 import { State } from "../store";
+import { MockSleigh } from "../sleighs/MockSleigh";
 
 describe("Game", () => {
   const initialState: State = {
@@ -26,17 +25,7 @@ describe("Game", () => {
       ticks: 0,
       ticksPerFrame: 1,
     },
-    sleighs: [
-      {
-        id: "1",
-        maxSpeed: 5 as PixelPerTick,
-        position: {
-          x: 0 as Pixel,
-          y: 0 as Pixel,
-        },
-        command: null as null | Command,
-      },
-    ],
+    sleighs: [new MockSleigh()],
   };
   const store = createStore<State, AnyAction, unknown, unknown>(
     () => initialState
