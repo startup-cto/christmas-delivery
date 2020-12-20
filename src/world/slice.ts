@@ -10,6 +10,7 @@ const initialState = {
   ticks: 0,
   ticksPerFrame: 10,
 };
+
 export const { reducer, actions } = createSlice({
   name: "world",
   initialState,

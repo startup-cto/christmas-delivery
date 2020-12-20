@@ -6,20 +6,22 @@ import { Vector2D } from "../utils/Vector2D/Vector2D";
 import { Position } from "../models/Position";
 import { Heading, Sleigh } from "./Sleigh";
 
+const initialState: Sleigh[] = [
+  {
+    id: "1",
+    heading: Heading.Right,
+    maxSpeed: 5 as PixelPerTick,
+    position: {
+      x: 400 as Pixel,
+      y: 300 as Pixel,
+    },
+    command: null,
+  },
+];
+
 export const { actions, reducer } = createSlice({
   name: "sleighs",
-  initialState: [
-    {
-      id: "1",
-      heading: Heading.Right,
-      maxSpeed: 5 as PixelPerTick,
-      position: {
-        x: 400 as Pixel,
-        y: 300 as Pixel,
-      },
-      command: null,
-    },
-  ] as Sleigh[],
+  initialState,
   reducers: {
     moveSleigh(
       state,
