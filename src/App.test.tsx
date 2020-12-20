@@ -32,9 +32,11 @@ describe("ConnectedApp", () => {
     const { findByLabelText, findByText } = render(<App />, {
       wrapper: getMockProvider(store),
     });
-    const codeBox = await findByLabelText(codeInputLabel);
+    const codeBox = await findByLabelText(codeInputLabel, {
+      exact: false,
+    });
     userEvent.clear(codeBox);
-    userEvent.type(codeBox, solution);
+    userEvent.paste(codeBox, solution);
     const runCodeButton = await findByText(runCodeButtonLabel);
     userEvent.click(runCodeButton);
     expect(await findByText(successMessage)).toBeInTheDocument();
@@ -44,7 +46,7 @@ describe("ConnectedApp", () => {
     const { findByLabelText, findByText, queryByText } = render(<App />, {
       wrapper: getMockProvider(),
     });
-    const codeBox = await findByLabelText(codeInputLabel);
+    const codeBox = await findByLabelText(codeInputLabel, { exact: false });
     userEvent.clear(codeBox);
     const runCodeButton = await findByText(runCodeButtonLabel);
     userEvent.click(runCodeButton);

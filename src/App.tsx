@@ -5,6 +5,10 @@ import React, { ChangeEvent, useContext, useEffect, useState } from "react";
 import { actions as worldActions } from "./world/slice";
 import { Game } from "./Game/Game";
 import { executeCode } from "./executeCode/executeCode";
+import AceEditor from "react-ace";
+
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/theme-monokai";
 
 import "@fortawesome/fontawesome-free/css/brands.css";
 
@@ -67,18 +71,20 @@ sleigh.moveTo(someRandomPosition);`
         {hasWon && <div>{successMessage}</div>}
         <Display state={state} />
         <form>
-          <label htmlFor="code">{codeInputLabel}</label>
-          <textarea
-            id="code"
-            style={{
-              display: "block",
-              height: "7rem",
-              width: state.world.size.width,
-              margin: "1rem",
-            }}
-            value={code}
-            onChange={(event) => setCode(event.target.value)}
-          />
+          <label>
+            {codeInputLabel}
+            <AceEditor
+              value={code}
+              mode="javascript"
+              theme="monokai"
+              onChange={(val) => {
+                console.log(val);
+                setCode(val);
+              }}
+              height="5rem"
+              width="100%"
+            />
+          </label>
           <button onClick={runCode}>{runCodeButtonLabel}</button>
         </form>
         <ProjectDescription />
