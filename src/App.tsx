@@ -76,10 +76,7 @@ sleigh.moveTo(someRandomPosition);`
               value={code}
               mode="javascript"
               theme="monokai"
-              onChange={(val) => {
-                console.log(val);
-                setCode(val);
-              }}
+              onChange={setCode}
               height="5rem"
               width="100%"
               setOptions={{
