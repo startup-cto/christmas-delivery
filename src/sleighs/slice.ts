@@ -4,13 +4,14 @@ import { Pixel } from "../models/Pixel";
 import { actions as worldActions } from "../world/slice";
 import { Vector2D } from "../utils/Vector2D/Vector2D";
 import { Position } from "../models/Position";
-import { Sleigh } from "./Sleigh";
+import { Heading, Sleigh } from "./Sleigh";
 
 export const { actions, reducer } = createSlice({
   name: "sleighs",
   initialState: [
     {
       id: "1",
+      heading: Heading.Right,
       maxSpeed: 5 as PixelPerTick,
       position: {
         x: 400 as Pixel,
@@ -32,6 +33,10 @@ export const { actions, reducer } = createSlice({
                 name: "move",
                 payload: action.payload.targetPosition,
               },
+              heading:
+                action.payload.targetPosition.x < sleigh.position.x
+                  ? Heading.Left
+                  : Heading.Right,
             }
           : sleigh
       );

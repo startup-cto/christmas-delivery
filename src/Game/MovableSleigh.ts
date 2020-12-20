@@ -1,4 +1,4 @@
-import { Sleigh } from "../sleighs/Sleigh";
+import { Heading, Sleigh } from "../sleighs/Sleigh";
 import { Position } from "../models/Position";
 import { PixelPerTick } from "../models/PixelPerTick";
 import { Command } from "../sleighs/Command";
@@ -7,12 +7,14 @@ import { actions } from "../sleighs/slice";
 
 export class MovableSleigh implements Sleigh {
   public command: Command | null;
+  public heading: Heading;
   public id: string;
   public maxSpeed: PixelPerTick;
   public position: Position;
 
   constructor(sleigh: Sleigh, private dispatch: (action: AnyAction) => void) {
     this.command = sleigh.command;
+    this.heading = sleigh.heading;
     this.id = sleigh.id;
     this.maxSpeed = sleigh.maxSpeed;
     this.position = sleigh.position;

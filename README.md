@@ -18,7 +18,7 @@ This project can be installed with `npm install`, started with `npm start` and t
 - [X] Solve errors and warnings in console
 - [X] Make sleigh movement smoother
 - [X] Move state definition into one spot
-- [ ] Make sleigh look into direction of moving
+- [X] Make sleigh look into direction of moving
 - [ ] Add a timer for losing the game
 - [ ] Overlay success message on top of display
 - [ ] Beautify UI

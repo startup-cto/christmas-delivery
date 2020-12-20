@@ -1,10 +1,11 @@
-import { Sleigh } from "./Sleigh";
+import { Heading, Sleigh } from "./Sleigh";
 import { Pixel } from "../models/Pixel";
 import { PixelPerTick } from "../models/PixelPerTick";
 
 export class MockSleigh implements Sleigh {
   command = null;
   id = "id";
+  heading = Heading.Right;
   maxSpeed = 5 as PixelPerTick;
   position = {
     x: 0 as Pixel,

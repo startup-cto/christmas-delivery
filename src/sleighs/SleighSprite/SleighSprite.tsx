@@ -2,7 +2,7 @@ import { Sprite } from "../../components/Sprite/Sprite";
 import sleighSpriteSheet from "./sleigh.png";
 import { Pixel } from "../../models/Pixel";
 import React from "react";
-import { Sleigh } from "../Sleigh";
+import { Heading, Sleigh } from "../Sleigh";
 
 const sleighSpriteSheetMetaData = {
   source: sleighSpriteSheet,
@@ -19,11 +19,12 @@ export interface Props {
   state: typeof sleighSpriteSheetMetaData["states"][number];
 }
 
-export function SleighSprite({ sleigh: { position }, state }: Props) {
+export function SleighSprite({ sleigh: { heading, position }, state }: Props) {
   return (
     <Sprite
       position={position}
       spriteSheet={sleighSpriteSheetMetaData}
+      mirror={heading === Heading.Left}
       state={state}
     />
   );
