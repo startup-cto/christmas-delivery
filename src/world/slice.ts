@@ -11,14 +11,17 @@ const initialState = {
   ticksPerFrame: 10,
 };
 
+type State = typeof initialState;
+
 export const { reducer, actions } = createSlice({
   name: "world",
   initialState,
   reducers: {
-    updateWorldState: (
-      state,
-      action: PayloadAction<Partial<typeof initialState>>
-    ) => ({ ...state, ...action.payload }),
+    runGame: (state, action: PayloadAction<State>) => action.payload,
+    updateWorldState: (state, action: PayloadAction<Partial<State>>) => ({
+      ...state,
+      ...action.payload,
+    }),
     waitTicks: (state, action: PayloadAction<number>) => ({
       ...state,
       ticks: state.ticks + action.payload,

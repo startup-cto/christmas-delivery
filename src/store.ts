@@ -4,6 +4,8 @@ import { reducer as houses } from "./houses/slice";
 import { reducer as sleighs } from "./sleighs/slice";
 import { actions, reducer as world } from "./world/slice";
 import { Vector2D } from "./utils/Vector2D/Vector2D";
+import createSagaMiddleware from "redux-saga";
+import { worldSaga } from "./world/saga";
 
 const combinedReducer = combineReducers({
   currentLevel,
@@ -31,7 +33,8 @@ function checkWinCondition(state: State, action: AnyAction): State {
 }
 
 export function createStore() {
-  return configureStore({
+  const sagaMiddleware = createSagaMiddleware();
+  const store = configureStore({
     devTools: {
       actionsBlacklist: [actions.waitTicks.toString()],
     },
@@ -40,5 +43,8 @@ export function createStore() {
 
       return checkWinCondition(intermediateState, action);
     },
+    middleware: [sagaMiddleware],
   });
+  sagaMiddleware.run(worldSaga);
+  return store;
 }
