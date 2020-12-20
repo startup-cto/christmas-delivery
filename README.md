@@ -15,7 +15,8 @@ This project can be installed with `npm install`, started with `npm start` and t
 ## Todos
 
 - [X] Stop display from rerendering each tick
-- [ ] Solve errors and warnings in console
+- [X] Solve errors and warnings in console
+- [ ] Make sleigh movement smoother
 - [ ] Move state definition into one spot
 - [ ] Make sleigh look into direction of moving
 - [ ] Add a timer for losing the game
@@ -25,3 +26,4 @@ This project can be installed with `npm install`, started with `npm start` and t
 - [ ] Add more levels
 - [ ] Add documentation for `game` object
 - [ ] Add animations to the sleigh
+- [ ] Add social image for sharing

@@ -82,6 +82,9 @@ sleigh.moveTo(someRandomPosition);`
               }}
               height="5rem"
               width="100%"
+              setOptions={{
+                useWorker: false,
+              }}
             />
           </label>
           <button onClick={runCode}>{runCodeButtonLabel}</button>
