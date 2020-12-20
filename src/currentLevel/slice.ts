@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const { reducer } = createSlice({
+export const { actions, reducer } = createSlice({
   name: "currentLevel",
   initialState: {
     isCompleted: false,
   },
-  reducers: {},
+  reducers: {
+    winLevel: (state) => ({ ...state, isCompleted: true }),
+  },
 });

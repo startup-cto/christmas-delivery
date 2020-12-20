@@ -1,45 +1,24 @@
-import { AnyAction, combineReducers, configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { reducer as currentLevel } from "./currentLevel/slice";
 import { reducer as houses } from "./houses/slice";
 import { reducer as sleighs } from "./sleighs/slice";
 import { reducer as world } from "./world/slice";
-import { Vector2D } from "./utils/Vector2D/Vector2D";
 import createSagaMiddleware from "redux-saga";
 import { worldSaga } from "./world/saga";
 
-const combinedReducer = combineReducers({
+const reducer = combineReducers({
   currentLevel,
   houses,
   sleighs,
   world,
 });
 
-export type State = ReturnType<typeof combinedReducer>;
-
-function hasWon(state: State) {
-  return new Vector2D(state.houses[0].position).equals(
-    state.sleighs[0].position
-  );
-}
-
-function checkWinCondition(state: State, action: AnyAction): State {
-  return {
-    ...state,
-    currentLevel: {
-      ...state.currentLevel,
-      isCompleted: hasWon(state),
-    },
-  };
-}
+export type State = ReturnType<typeof reducer>;
 
 export function createStore() {
   const sagaMiddleware = createSagaMiddleware();
   const store = configureStore({
-    reducer: (state, action) => {
-      const intermediateState = combinedReducer(state, action);
-
-      return checkWinCondition(intermediateState, action);
-    },
+    reducer,
     middleware: [sagaMiddleware],
   });
   sagaMiddleware.run(worldSaga);
