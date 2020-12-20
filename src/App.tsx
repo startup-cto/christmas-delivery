@@ -68,8 +68,8 @@ sleigh.moveTo(someRandomPosition);`
     <Container>
       <main>
         <div>{rulesExplanation}</div>
-        {hasWon && <div>{successMessage}</div>}
         <Display state={state} />
+        {hasWon && <div>{successMessage}</div>}
         <form>
           <label>
             {codeInputLabel}
