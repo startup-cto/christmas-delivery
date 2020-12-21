@@ -7,6 +7,11 @@ import { MockHouse } from "../houses/MockHouse";
 import { Pixel } from "../models/Pixel";
 import { put } from "redux-saga/effects";
 import { equals } from "ramda";
+import { State } from "../store";
+
+function wait(waitTimeInMS: number) {
+  return new Promise((resolve) => setTimeout(resolve, waitTimeInMS));
+}
 
 describe("worldSaga", () => {
   describe("runTicks", () => {
@@ -28,7 +33,6 @@ describe("worldSaga", () => {
             world,
           })
           .dispatch(actions.runGame(world))
-          .delay(1000 / world.fps)
           .silentRun();
         expect(result.effects.put).toSatisfyAll(
           equals(put(actions.waitTicks(world.ticksPerFrame)))
@@ -49,13 +53,54 @@ describe("worldSaga", () => {
             houses: [],
             world,
           })
-          .delay(1000 / world.fps)
           .dispatch(actions.runGame(world))
           .silentRun();
         // The testing framework does not support delay effects,
         // but as they are handled as calls, we can work around this
         const numberOfDelayEffects = result.effects.call.length;
         expect(result.effects.put.length).toBe(numberOfDelayEffects);
+      });
+
+      it("no longer dispatches waitTicks actions after winning the game", async () => {
+        const world = {
+          fps: 50,
+          isRunning,
+          size: { width: 100 as Pixel, height: 100 as Pixel },
+          ticks: 0,
+          ticksPerFrame: 1,
+        };
+        let wasWinLevelDispatched = false;
+        let wasWaitTicksDispatchedAfterWinLevel = false;
+        await expectSaga(worldSaga)
+          .withReducer(
+            (
+              state: State = {
+                currentLevel: {
+                  isCompleted: false,
+                },
+                sleighs: [],
+                houses: [],
+                world,
+              },
+              action
+            ) => {
+              if (action.type === levelActions.winLevel.toString()) {
+                wasWinLevelDispatched = true;
+              }
+              if (
+                wasWinLevelDispatched &&
+                action.type === actions.waitTicks.toString()
+              ) {
+                wasWaitTicksDispatchedAfterWinLevel = true;
+              }
+              return state;
+            }
+          )
+          .dispatch(actions.runGame(world))
+          .delay(10)
+          .dispatch(levelActions.winLevel())
+          .silentRun();
+        expect(wasWaitTicksDispatchedAfterWinLevel).toBe(false);
       });
     });
   });
