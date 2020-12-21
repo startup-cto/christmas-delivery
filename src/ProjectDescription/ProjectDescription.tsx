@@ -4,7 +4,7 @@ import {
   twitchLinkText,
 } from "../locale/en/main.json";
 import React from "react";
-import { FontAwesomeIconLink } from "../components/FontAwesomeIconLink";
+import { FontAwesomeIconLink } from "../components/FontAwesomeIconLink/FontAwesomeIconLink";
 import { InlineList } from "../components/InlineList/InlineList";
 
 export function ProjectDescription() {
