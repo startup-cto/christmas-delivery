@@ -9,7 +9,7 @@ import {
 import { App } from "./App";
 import { Provider } from "react-redux";
 import { PropsWithChildren } from "react";
-import { createStore } from "./store";
+import { createStore } from "./store/store";
 import { actions as worldActions } from "./world/slice";
 
 function getMockProvider(store = createStore()) {

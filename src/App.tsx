@@ -8,10 +8,10 @@ import { executeCode } from "./executeCode/executeCode";
 import { rulesExplanation, successMessage } from "./locale/en/main.json";
 import { ProjectDescription } from "./ProjectDescription/ProjectDescription";
 import styled from "styled-components";
-import { State } from "./store";
 import { CodeEditor } from "./components/CodeEditor/CodeEditor";
 import { Pixel } from "./models/Pixel";
 import { selectIsRunning } from "./world/selectors/selectIsRunning";
+import { RootState } from "./store/RootState";
 
 const Container = styled.div`
   & {
@@ -31,7 +31,9 @@ export function App() {
   const dispatch = useDispatch();
   const { store } = useContext(ReactReduxContext);
   const isRunning = useSelector(selectIsRunning);
-  const hasWon = useSelector((state: State) => state.currentLevel.isCompleted);
+  const hasWon = useSelector(
+    (state: RootState) => state.currentLevel.isCompleted
+  );
   const [code, setCode] = useState(
     `const sleigh = game.sleighs[0];
 const house = game.houses[0];

@@ -1,7 +1,7 @@
 import React from "react";
 import { App } from "./App";
 import { Provider } from "react-redux";
-import { createStore } from "./store";
+import { createStore } from "./store/store";
 
 function ConnectedApp() {
   return (

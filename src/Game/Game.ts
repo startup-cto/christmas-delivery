@@ -1,7 +1,7 @@
 import { Action, Store } from "@reduxjs/toolkit";
 import { House } from "../houses/House";
 import { MovableSleigh } from "./MovableSleigh";
-import { State } from "../store";
+import { RootState } from "../store/RootState";
 
 export class Game {
   get houses(): House[] {
@@ -17,5 +17,5 @@ export class Game {
       );
   }
 
-  constructor(private store: Store<State, Action>) {}
+  constructor(private store: Store<RootState, Action>) {}
 }

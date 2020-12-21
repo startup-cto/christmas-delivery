@@ -1,3 +1,3 @@
-import { State } from "../../store";
+import { RootState } from "../../store/RootState";
 
-export const selectWorldSize = (state: State) => state.world.size;
+export const selectWorldSize = (state: RootState) => state.world.size;

@@ -2,11 +2,11 @@ import { AnyAction, createStore } from "@reduxjs/toolkit";
 import { Game } from "./Game";
 import { Pixel } from "../models/Pixel";
 import { actions } from "../sleighs/slice";
-import { State } from "../store";
 import { MockSleigh } from "../sleighs/MockSleigh";
+import { RootState } from "../store/RootState";
 
 describe("Game", () => {
-  const initialState: State = {
+  const initialState: RootState = {
     currentLevel: {
       isCompleted: false,
     },
@@ -27,7 +27,7 @@ describe("Game", () => {
     },
     sleighs: [new MockSleigh()],
   };
-  const store = createStore<State, AnyAction, unknown, unknown>(
+  const store = createStore<RootState, AnyAction, unknown, unknown>(
     () => initialState
   );
 

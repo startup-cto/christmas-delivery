@@ -7,7 +7,7 @@ import { MockHouse } from "../houses/MockHouse";
 import { Pixel } from "../models/Pixel";
 import { put } from "redux-saga/effects";
 import { equals } from "ramda";
-import { State } from "../store";
+import { RootState } from "../store/RootState";
 
 function wait(waitTimeInMS: number) {
   return new Promise((resolve) => setTimeout(resolve, waitTimeInMS));
@@ -74,7 +74,7 @@ describe("worldSaga", () => {
         await expectSaga(worldSaga)
           .withReducer(
             (
-              state: State = {
+              state: RootState = {
                 currentLevel: {
                   isCompleted: false,
                 },

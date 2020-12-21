@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import { State } from "../store";
+import { RootState } from "../store/RootState";
 
 export function useFrame(numberOfFrames: number) {
   return useSelector(
-    (state: State) =>
+    (state: RootState) =>
       (state.world.ticks / state.world.ticksPerFrame) % numberOfFrames
   );
 }
