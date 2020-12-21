@@ -24,7 +24,11 @@ function* runTicks() {
 function* checkWinCondition() {
   const sleighs = yield* select(selectSleighs);
   const houses = yield* select(selectHouses);
-  if (new Vector2D(houses[0].position).equals(sleighs[0].position)) {
+  if (
+    houses.length === 1 &&
+    sleighs.length === 1 &&
+    new Vector2D(houses[0].position).equals(sleighs[0].position)
+  ) {
     yield* put(levelActions.winLevel());
   }
 }
