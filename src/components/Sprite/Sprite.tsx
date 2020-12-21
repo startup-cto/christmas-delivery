@@ -6,6 +6,7 @@ import { useFrame } from "../../world/useFrame";
 interface Props<State> {
   mirror?: boolean;
   position: Position;
+  scale?: number;
   state: State;
   spriteSheet: SpriteSheet<State>;
 }
@@ -13,6 +14,7 @@ interface Props<State> {
 export function Sprite<State>({
   mirror = false,
   position: { x, y },
+  scale = 1,
   state,
   spriteSheet,
 }: Props<State>) {
@@ -32,7 +34,7 @@ export function Sprite<State>({
         backgroundImage: `url(${spriteSheet.source})`,
         backgroundPositionX: xOffset,
         backgroundPositionY: yOffset,
-        transform: `scaleX(${mirror ? -1 : 1})`,
+        transform: `scaleX(${mirror ? -scale : scale} ) scaleY(${scale})`,
         transitionProperty: "left, top",
         transitionDuration: "0.5s",
       }}

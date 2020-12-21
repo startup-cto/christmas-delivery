@@ -25,6 +25,7 @@ export function SleighSprite({ sleigh: { heading, position }, state }: Props) {
       position={position}
       spriteSheet={sleighSpriteSheetMetaData}
       mirror={heading === Heading.Left}
+      scale={1 / 2}
       state={state}
     />
   );
