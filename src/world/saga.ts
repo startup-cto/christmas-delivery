@@ -1,4 +1,12 @@
-import { all, delay, put, select, takeEvery } from "typed-redux-saga";
+import {
+  cancel,
+  delay,
+  fork,
+  put,
+  select,
+  take,
+  takeEvery,
+} from "typed-redux-saga";
 import { actions } from "./slice";
 import { actions as levelActions } from "../currentLevel/slice";
 import { Vector2D } from "../utils/Vector2D/Vector2D";
@@ -6,13 +14,20 @@ import { selectSleighs } from "../sleighs/selectors/selectSleights";
 import { selectHouses } from "../houses/selectors/selectHouses";
 
 export function* worldSaga() {
-  yield* all([
-    takeEvery(actions.runGame.toString(), runTicks),
-    takeEvery(actions.waitTicks.toString(), checkWinCondition),
-  ]);
+  yield* fork(runGame);
+  yield* takeEvery(actions.waitTicks.toString(), checkWinCondition);
 }
 
-function* runTicks() {
+function* runGame() {
+  while (true) {
+    yield* take(actions.runGame.toString());
+    const waitTicksSaga = yield* fork(regularlyWaitTicks);
+    yield* take(levelActions.winLevel.toString());
+    yield* cancel(waitTicksSaga);
+  }
+}
+
+function* regularlyWaitTicks() {
   while (true) {
     const ticksPerFrame = yield* select((state) => state.world.ticksPerFrame);
     yield* put(actions.waitTicks(ticksPerFrame));

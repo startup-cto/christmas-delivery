@@ -35,8 +35,7 @@ describe("worldSaga", () => {
         );
       });
 
-      it("dispatches one more waitTicks action than delay effects resolved", async () => {
-        let resolvedDelayEffects = 0;
+      it("dispatches one waitTicks action per delay effect resolved", async () => {
         const world = {
           fps: 50,
           isRunning,
@@ -50,20 +49,13 @@ describe("worldSaga", () => {
             houses: [],
             world,
           })
-          .provide({
-            call({ fn }, next) {
-              if (fn.name === "delayP") {
-                resolvedDelayEffects++;
-                if (resolvedDelayEffects >= 3) {
-                  throw new Error("Stop execution");
-                }
-              }
-              next();
-            },
-          })
+          .delay(1000 / world.fps)
           .dispatch(actions.runGame(world))
           .silentRun();
-        expect(result.effects.put.length).toBe(resolvedDelayEffects + 1);
+        // The testing framework does not support delay effects,
+        // but as they are handled as calls, we can work around this
+        const numberOfDelayEffects = result.effects.call.length;
+        expect(result.effects.put.length).toBe(numberOfDelayEffects);
       });
     });
   });
