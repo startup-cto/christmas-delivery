@@ -4,29 +4,14 @@ import { Pixel } from "../models/Pixel";
 import { actions } from "../sleighs/slice";
 import { MockSleigh } from "../sleighs/MockSleigh";
 import { RootState } from "../store/RootState";
+import { MockRootState } from "../store/MockRootState";
+import { MockHouse } from "../houses/MockHouse";
 
 describe("Game", () => {
-  const initialState: RootState = {
-    currentLevel: {
-      isCompleted: false,
-    },
-    houses: [
-      {
-        id: "1",
-        position: {
-          x: 100 as Pixel,
-          y: 100 as Pixel,
-        },
-      },
-    ],
-    world: {
-      fps: 10,
-      size: { width: 100 as Pixel, height: 100 as Pixel },
-      ticks: 0,
-      ticksPerFrame: 1,
-    },
+  const initialState: RootState = new MockRootState({
+    houses: [new MockHouse()],
     sleighs: [new MockSleigh()],
-  };
+  });
   const store = createStore<RootState, AnyAction, unknown, unknown>(
     () => initialState
   );

@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Pixel } from "../models/Pixel";
 import { actions as levelActions } from "../currentLevel/slice";
 
-export const initialState = {
+const initialState = {
   fps: 10,
   size: {
     width: 800 as Pixel,
@@ -13,7 +13,7 @@ export const initialState = {
   ticksPerFrame: 10,
 };
 
-type State = typeof initialState;
+export type World = typeof initialState;
 
 export const { reducer, actions } = createSlice({
   name: "world",
@@ -21,9 +21,9 @@ export const { reducer, actions } = createSlice({
   reducers: {
     runGame: (
       state,
-      action: PayloadAction<Pick<State, "fps" | "size" | "ticksPerFrame">>
+      action: PayloadAction<Pick<World, "fps" | "size" | "ticksPerFrame">>
     ) => ({ ...action.payload, isRunning: true, ticks: 0 }),
-    updateWorldState: (state, action: PayloadAction<Partial<State>>) => ({
+    updateWorldState: (state, action: PayloadAction<Partial<World>>) => ({
       ...state,
       ...action.payload,
     }),

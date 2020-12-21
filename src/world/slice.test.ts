@@ -1,11 +1,12 @@
-import { actions, initialState, reducer } from "./slice";
+import { actions, reducer } from "./slice";
 import { actions as levelActions } from "../currentLevel/slice";
+import { MockWorld } from "./MockWorld";
 
 describe("world slice", () => {
   describe("reducer", () => {
     it("updates the world state", () => {
       const oldState = {
-        ...initialState,
+        ...new MockWorld(),
         fps: 100,
       };
 
@@ -17,7 +18,7 @@ describe("world slice", () => {
 
     it("marks the game as no longer running on a win", () => {
       const oldState = {
-        ...initialState,
+        ...new MockWorld(),
         isRunning: true,
       };
 
