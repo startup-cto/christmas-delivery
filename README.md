@@ -22,6 +22,7 @@ This project can be installed with `npm install`, started with `npm start` and t
 - [X] Stop ticks when game is won
 - [X] Add a timer for losing the game
 - [X] Shrink sleigh by factor 2
+- [X] Run tests on CI
 - [ ] Overlay success message on top of display
 - [ ] Beautify UI
 - [ ] Get rid of ticksPerFrame
