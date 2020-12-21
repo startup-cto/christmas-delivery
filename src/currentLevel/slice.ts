@@ -6,6 +6,7 @@ export const { actions, reducer } = createSlice({
     isCompleted: false,
   },
   reducers: {
+    loseLevel: (state) => state,
     winLevel: (state) => ({ ...state, isCompleted: true }),
   },
 });

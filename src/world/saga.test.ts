@@ -9,6 +9,7 @@ import { put } from "redux-saga/effects";
 import { equals } from "ramda";
 import { RootState } from "../store/RootState";
 import { MockRootState } from "../store/MockRootState";
+import { MockWorld } from "./MockWorld";
 
 describe("worldSaga", () => {
   describe("runTicks", () => {
@@ -75,6 +76,22 @@ describe("worldSaga", () => {
             new MockRootState({
               houses: [new MockHouse({ position })],
               sleighs: [new MockSleigh({ position })],
+            })
+          )
+          .dispatch(actions.waitTicks(1))
+          .silentRun();
+      });
+    });
+  });
+
+  describe("checkLossCondition", () => {
+    describe("if more than 100 ticks passed", () => {
+      it("dispatches a losing action", async () => {
+        await expectSaga(worldSaga)
+          .put(levelActions.loseLevel())
+          .withState(
+            new MockRootState({
+              world: new MockWorld({ ticks: 101 }),
             })
           )
           .dispatch(actions.waitTicks(1))
