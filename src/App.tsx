@@ -11,7 +11,7 @@ import styled from "styled-components";
 import { CodeEditor } from "./components/CodeEditor/CodeEditor";
 import { Pixel } from "./models/Pixel";
 import { selectIsRunning } from "./world/selectors/selectIsRunning";
-import { RootState } from "./store/RootState";
+import { selectHasWon } from "./currentLevel/selectors/selectHasWon";
 
 const Container = styled.div`
   & {
@@ -31,9 +31,7 @@ export function App() {
   const dispatch = useDispatch();
   const { store } = useContext(ReactReduxContext);
   const isRunning = useSelector(selectIsRunning);
-  const hasWon = useSelector(
-    (state: RootState) => state.currentLevel.isCompleted
-  );
+  const hasWon = useSelector(selectHasWon);
   const [code, setCode] = useState(
     `const sleigh = game.sleighs[0];
 const house = game.houses[0];
