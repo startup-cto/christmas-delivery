@@ -30,7 +30,11 @@ export const { reducer, actions } = createSlice({
     }),
   },
   extraReducers: (builder) => {
-    builder.addCase(levelActions.winLevel, (state, action) => ({
+    builder.addCase(levelActions.winLevel, (state) => ({
+      ...state,
+      isRunning: false,
+    }));
+    builder.addCase(levelActions.loseLevel, (state) => ({
       ...state,
       isRunning: false,
     }));
