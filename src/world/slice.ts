@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Pixel } from "../models/Pixel";
+import { actions as levelActions } from "../currentLevel/slice";
 
 export const initialState = {
   fps: 10,
@@ -30,5 +31,11 @@ export const { reducer, actions } = createSlice({
       ...state,
       ticks: state.ticks + action.payload,
     }),
+  },
+  extraReducers: (builder) => {
+    builder.addCase(levelActions.winLevel, (state, action) => ({
+      ...state,
+      isRunning: false,
+    }));
   },
 });

@@ -1,4 +1,5 @@
 import { actions, initialState, reducer } from "./slice";
+import { actions as levelActions } from "../currentLevel/slice";
 
 describe("world slice", () => {
   describe("reducer", () => {
@@ -11,6 +12,18 @@ describe("world slice", () => {
       expect(reducer(oldState, actions.updateWorldState({ fps: 50 }))).toEqual({
         ...oldState,
         fps: 50,
+      });
+    });
+
+    it("marks the game as no longer running on a win", () => {
+      const oldState = {
+        ...initialState,
+        isRunning: true,
+      };
+
+      expect(reducer(oldState, levelActions.winLevel())).toEqual({
+        ...oldState,
+        isRunning: false,
       });
     });
   });
