@@ -17,7 +17,10 @@ export const { actions, reducer } = createSlice({
   name: "currentLevel",
   initialState,
   reducers: {
-    loseLevel: (state) => state,
+    loseLevel: (state) => ({
+      ...state,
+      levelCompletionState: LevelCompletionState.Lost,
+    }),
     winLevel: (state) => ({
       ...state,
       levelCompletionState: LevelCompletionState.Won,

@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 
 import {
   codeInputLabel,
+  failureMessage,
   runCodeButtonLabel,
   successMessage,
 } from "./locale/en/main.json";
@@ -25,8 +26,8 @@ describe("ConnectedApp", () => {
     const store = createStore();
     store.dispatch(
       worldActions.updateWorldState({
-        fps: 100,
-        ticksPerFrame: 1000,
+        fps: 1000,
+        ticksPerFrame: 1,
       })
     );
     const { findByLabelText, findByText } = render(<App />, {
@@ -51,5 +52,25 @@ describe("ConnectedApp", () => {
     const runCodeButton = await findByText(runCodeButtonLabel);
     userEvent.click(runCodeButton);
     expect(queryByText(successMessage)).not.toBeInTheDocument();
+  });
+
+  it("shows a level lost message when running no code at all", async () => {
+    const store = createStore();
+    store.dispatch(
+      worldActions.updateWorldState({
+        fps: 1000,
+        ticksPerFrame: 1,
+      })
+    );
+
+    const { findByLabelText, findByText } = render(<App />, {
+      wrapper: getMockProvider(store),
+    });
+    const codeBox = await findByLabelText(codeInputLabel, { exact: false });
+    userEvent.clear(codeBox);
+    const runCodeButton = await findByText(runCodeButtonLabel);
+    userEvent.click(runCodeButton);
+
+    expect(await findByText(failureMessage)).toBeInTheDocument();
   });
 });

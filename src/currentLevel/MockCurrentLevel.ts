@@ -1,7 +1,7 @@
-import { CurrentLevel } from "./slice";
+import { CurrentLevel, LevelCompletionState } from "./slice";
 
 export class MockCurrentLevel implements CurrentLevel {
-  isCompleted = false;
+  levelCompletionState = LevelCompletionState.Waiting;
 
   constructor(override: Partial<CurrentLevel> = {}) {
     Object.assign(this, override);

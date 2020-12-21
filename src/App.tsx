@@ -5,13 +5,17 @@ import { actions as worldActions } from "./world/slice";
 import { Game } from "./Game/Game";
 import { executeCode } from "./executeCode/executeCode";
 
-import { rulesExplanation, successMessage } from "./locale/en/main.json";
+import {
+  failureMessage,
+  rulesExplanation,
+  successMessage,
+} from "./locale/en/main.json";
 import { ProjectDescription } from "./ProjectDescription/ProjectDescription";
 import styled from "styled-components";
 import { CodeEditor } from "./components/CodeEditor/CodeEditor";
-import { Pixel } from "./models/Pixel";
 import { selectIsRunning } from "./world/selectors/selectIsRunning";
 import { selectHasWon } from "./currentLevel/selectors/selectHasWon";
+import { selectHasLost } from "./currentLevel/selectors/selectHasLost";
 
 const Container = styled.div`
   & {
@@ -32,6 +36,7 @@ export function App() {
   const { store } = useContext(ReactReduxContext);
   const isRunning = useSelector(selectIsRunning);
   const hasWon = useSelector(selectHasWon);
+  const hasLost = useSelector(selectHasLost);
   const [code, setCode] = useState(
     `const sleigh = game.sleighs[0];
 const house = game.houses[0];
@@ -42,16 +47,7 @@ sleigh.moveTo(someRandomPosition);`
   function runCode() {
     const game = new Game(store);
     executeCode(code, game);
-    dispatch(
-      worldActions.runGame({
-        fps: 10,
-        size: {
-          width: 800 as Pixel,
-          height: 400 as Pixel,
-        },
-        ticksPerFrame: 10,
-      })
-    );
+    dispatch(worldActions.runGame());
   }
 
   return (
@@ -60,6 +56,7 @@ sleigh.moveTo(someRandomPosition);`
         <div>{rulesExplanation}</div>
         <Display />
         {hasWon && <div>{successMessage}</div>}
+        {hasLost && <div>{failureMessage}</div>}
         <CodeEditor
           code={code}
           onCodeChange={setCode}

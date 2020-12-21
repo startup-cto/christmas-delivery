@@ -19,10 +19,7 @@ export const { reducer, actions } = createSlice({
   name: "world",
   initialState,
   reducers: {
-    runGame: (
-      state,
-      action: PayloadAction<Pick<World, "fps" | "size" | "ticksPerFrame">>
-    ) => ({ ...action.payload, isRunning: true, ticks: 0 }),
+    runGame: (state) => ({ ...state, isRunning: true, ticks: 0 }),
     updateWorldState: (state, action: PayloadAction<Partial<World>>) => ({
       ...state,
       ...action.payload,
