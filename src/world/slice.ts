@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Pixel } from "../models/Pixel";
 
-const initialState = {
+export const initialState = {
   fps: 10,
   size: {
     width: 800 as Pixel,
