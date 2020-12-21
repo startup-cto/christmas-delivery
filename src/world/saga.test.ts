@@ -7,7 +7,32 @@ import { MockHouse } from "../houses/MockHouse";
 import { Pixel } from "../models/Pixel";
 
 describe("worldSaga", () => {
-  describe("winning the game", () => {
+  describe("runTicks", () => {
+    describe("if the game is running", () => {
+      const isRunning = true;
+
+      it("dispatches waitTicks", async () => {
+        const world = {
+          fps: 50,
+          isRunning,
+          size: { width: 100 as Pixel, height: 100 as Pixel },
+          ticks: 0,
+          ticksPerFrame: 1,
+        };
+        await expectSaga(worldSaga)
+          .put(actions.waitTicks(world.ticksPerFrame))
+          .withState({
+            sleighs: [],
+            houses: [],
+            world,
+          })
+          .dispatch(actions.runGame(world))
+          .silentRun();
+      });
+    });
+  });
+
+  describe("checkWinCondition", () => {
     describe("if the sleigh is at the house", () => {
       it("dispatches a winning action", async () => {
         const position = {
