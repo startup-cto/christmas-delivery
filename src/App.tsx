@@ -10,6 +10,24 @@ import { ProjectDescription } from "./ProjectDescription/ProjectDescription";
 import styled from "styled-components";
 import { CodeEditor } from "./components/CodeEditor/CodeEditor";
 import { selectIsRunning } from "./world/selectors/selectIsRunning";
+import { range } from "ramda";
+
+function createCssStar({
+  xPercent,
+  yPercent,
+  intensity,
+}: {
+  xPercent: number;
+  yPercent: number;
+  intensity: number;
+}) {
+  return `radial-gradient(
+        circle at ${xPercent}% ${yPercent}%,
+        #fff,
+        #fff3 ${intensity * 2}px,
+        transparent ${intensity * 10}px
+      )`;
+}
 
 const Container = styled.div`
   & {
@@ -18,9 +36,21 @@ const Container = styled.div`
         1rem,
         auto
       );
+    background: ${range(1, 70)
+        .map(() => ({
+          intensity: 0.5 + 0.5 * Math.random(),
+          xPercent: Math.random() * 100,
+          yPercent: Math.random() * 100,
+        }))
+        .map(createCssStar)
+        .join(",")},
+      linear-gradient(180deg, #242b4bee, #0b1026ee),
+      linear-gradient(120deg, #161b36aa, #061d37aa),
+      linear-gradient(240deg, #161b36aa, #061d37aa);
   }
 
   & main {
+    background-color: #222a;
     grid-column-start: 2;
   }
 `;
