@@ -5,17 +5,11 @@ import { actions as worldActions } from "./world/slice";
 import { Game } from "./Game/Game";
 import { executeCode } from "./executeCode/executeCode";
 
-import {
-  failureMessage,
-  rulesExplanation,
-  successMessage,
-} from "./locale/en/main.json";
+import { rulesExplanation } from "./locale/en/main.json";
 import { ProjectDescription } from "./ProjectDescription/ProjectDescription";
 import styled from "styled-components";
 import { CodeEditor } from "./components/CodeEditor/CodeEditor";
 import { selectIsRunning } from "./world/selectors/selectIsRunning";
-import { selectHasWon } from "./currentLevel/selectors/selectHasWon";
-import { selectHasLost } from "./currentLevel/selectors/selectHasLost";
 
 const Container = styled.div`
   & {
@@ -35,8 +29,6 @@ export function App() {
   const dispatch = useDispatch();
   const { store } = useContext(ReactReduxContext);
   const isRunning = useSelector(selectIsRunning);
-  const hasWon = useSelector(selectHasWon);
-  const hasLost = useSelector(selectHasLost);
   const [code, setCode] = useState(
     `const sleigh = game.sleighs[0];
 const house = game.houses[0];
@@ -55,8 +47,6 @@ sleigh.moveTo(someRandomPosition);`
       <main>
         <div>{rulesExplanation}</div>
         <Display />
-        {hasWon && <div>{successMessage}</div>}
-        {hasLost && <div>{failureMessage}</div>}
         <CodeEditor
           code={code}
           onCodeChange={setCode}
