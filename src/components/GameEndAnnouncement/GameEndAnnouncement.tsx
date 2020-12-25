@@ -1,9 +1,19 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import React, { FunctionComponent } from "react";
 import { useSelector } from "react-redux";
 import { failureMessage, successMessage } from "../../locale/en/main.json";
 import { selectLevelCompletionState } from "../../currentLevel/selectors/selectLevelCompletionState";
 import { LevelCompletionState } from "../../currentLevel/slice";
+
+const fadeIn = keyframes`
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  to {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+`;
 
 const OverlayDisplay = styled.div`
   position: absolute;
@@ -13,6 +23,7 @@ const OverlayDisplay = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   height: 100%;
   width: 100%;
+  animation: ${fadeIn} 0.5s linear 0s;
 `;
 
 const messageByState: Record<string, string> = {
