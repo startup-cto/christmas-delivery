@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectWorldSize } from "../../world/selectors/selectWorldSize";
 import { Houses } from "../../houses/Houses/Houses";
@@ -7,6 +7,9 @@ import { GameEndAnnouncement } from "../GameEndAnnouncement/GameEndAnnouncement"
 import { prop } from "ramda";
 import styled from "styled-components";
 import { Pixel } from "../../models/Pixel";
+import { TreeSprite } from "../../trees/TreeSprite/TreeSprite";
+import { Position } from "../../models/Position";
+import { createGrid } from "../../utils/createGrid";
 
 interface Props {
   width: Pixel;
@@ -23,9 +26,29 @@ const Background = styled.div<Props>`
 `;
 
 export function Display() {
-  const worldSize = useSelector(selectWorldSize);
+  const { height, width } = useSelector(selectWorldSize);
+  const [treePositions, setTreePositions] = useState<Position[]>([]);
+  useEffect(() => {
+    const numberOfColumns = Math.ceil(width / 100);
+    const numberOfRows = Math.ceil(height / 100);
+    console.log({ numberOfColumns, numberOfRows });
+    setTreePositions(
+      createGrid(numberOfColumns, numberOfRows)
+        .map(({ x, y }) => ({
+          x: x + Math.random(),
+          y: y + Math.random(),
+        }))
+        .map(({ x, y }) => ({
+          x: Math.floor(x * 100) as Pixel,
+          y: Math.floor(y * 100) as Pixel,
+        }))
+    );
+  }, [setTreePositions, width, height]);
   return (
-    <Background width={worldSize.width} height={worldSize.height}>
+    <Background width={width} height={height}>
+      {treePositions.map((position, index) => (
+        <TreeSprite position={position} key={index} />
+      ))}
       <Houses />
       <Sleighs />
       <GameEndAnnouncement />
