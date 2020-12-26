@@ -15,7 +15,7 @@ interface Props {
 }
 
 const Background = styled.div<Props>`
-  background-color: #ddd;
+  background: linear-gradient(180deg, #eae9ff, #8cb9c7);
   position: relative;
   height: ${prop("height")}px;
   width: ${prop("width")}px;
