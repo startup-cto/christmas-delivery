@@ -24,6 +24,7 @@ const OverlayDisplay = styled.div`
   height: 100%;
   width: 100%;
   animation: ${fadeIn} 0.5s linear 0s;
+  z-index: 1000;
 `;
 
 const messageByState: Record<string, string> = {
