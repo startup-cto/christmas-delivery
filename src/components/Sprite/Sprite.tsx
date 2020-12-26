@@ -2,6 +2,8 @@ import { Position } from "../../models/Position";
 import React from "react";
 import { SpriteSheet } from "./SpriteSheet";
 import { useFrame } from "../../world/useFrame";
+import styled from "styled-components";
+import { prop } from "ramda";
 
 interface Props<State> {
   mirror?: boolean;
@@ -10,6 +12,19 @@ interface Props<State> {
   state: State;
   spriteSheet: SpriteSheet<State>;
 }
+
+const StaticSprite = styled.div<{
+  width: number;
+  height: number;
+  imgSource: string;
+}>`
+  position: absolute;
+  width: ${prop("width")}px;
+  height: ${prop("height")}px;
+  background-image: url(${prop("imgSource")});
+  transition-property: left, top;
+  transition-duration: 0.5s;
+`;
 
 export function Sprite<State>({
   mirror = false,
@@ -23,21 +38,22 @@ export function Sprite<State>({
   const row = spriteSheet.states.findIndex((el) => el === state);
   const xOffset = -1 * frame * width;
   const yOffset = -1 * row * height;
+  const top = Math.floor(y - height / 2);
+  const left = Math.floor(x - width / 2);
   return (
-    <div
+    <StaticSprite
       style={{
-        position: "absolute",
-        width,
-        height,
-        left: x - width / 2,
-        top: y - height / 2,
-        backgroundImage: `url(${spriteSheet.source})`,
+        left,
+        top,
         backgroundPositionX: xOffset,
         backgroundPositionY: yOffset,
         transform: `scaleX(${mirror ? -scale : scale} ) scaleY(${scale})`,
         transitionProperty: "left, top",
         transitionDuration: "0.5s",
       }}
+      height={height}
+      imgSource={spriteSheet.source}
+      width={width}
     />
   );
 }
