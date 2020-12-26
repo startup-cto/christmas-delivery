@@ -53,8 +53,9 @@ const Container = styled.div`
 `;
 
 const EditArea = styled.div`
-  background-color: #4c0000;
-  border: 3px outset #680000;
+  background: linear-gradient(180deg, #2b0000, #160000 4rem, #160000);
+  color: #ddd;
+  border: 3px outset #b10000;
   box-shadow: 2rem;
   padding: 1rem;
 `;
