@@ -48,8 +48,7 @@ export function Sprite<State>({
         backgroundPositionX: xOffset,
         backgroundPositionY: yOffset,
         transform: `scaleX(${mirror ? -scale : scale} ) scaleY(${scale})`,
-        transitionProperty: "left, top",
-        transitionDuration: "0.5s",
+        zIndex: Math.max(top + 100, 0),
       }}
       height={height}
       imgSource={spriteSheet.source}
