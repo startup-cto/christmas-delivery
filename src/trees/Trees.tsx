@@ -10,8 +10,9 @@ export function Trees() {
   const { height, width } = useSelector(selectWorldSize);
   const [treePositions, setTreePositions] = useState<Position[]>([]);
   useEffect(() => {
-    const numberOfColumns = Math.ceil(width / 100);
-    const numberOfRows = Math.ceil(height / 100);
+    const averageTreeDistance = 130 as Pixel;
+    const numberOfColumns = Math.ceil(width / averageTreeDistance);
+    const numberOfRows = Math.ceil(height / averageTreeDistance);
     const jitter = 0.8;
     setTreePositions(
       createGrid(numberOfColumns, numberOfRows)
@@ -20,8 +21,8 @@ export function Trees() {
           y: y + Math.random() * jitter,
         }))
         .map(({ x, y }) => ({
-          x: Math.floor(x * 100) as Pixel,
-          y: Math.floor(y * 100) as Pixel,
+          x: Math.floor(x * averageTreeDistance) as Pixel,
+          y: Math.floor(y * averageTreeDistance) as Pixel,
         }))
     );
   }, [setTreePositions, width, height]);
