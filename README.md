@@ -24,10 +24,13 @@ This project can be installed with `npm install`, started with `npm start` and t
 - [X] Shrink sleigh by factor 2
 - [X] Run tests on CI
 - [X] Overlay success message on top of display
-- [ ] Beautify UI
+- [X] Beautify UI
+- [ ] Beautify code run button
+- [ ] Beautify project description
+- [ ] Decouple animation from ticks
 - [ ] Get rid of ticksPerFrame
 - [ ] Change position of house so that when the sleigh is at the house it doesn't look weird
-- [ ] Add background to the display
+- [X] Add background to the display
 - [ ] Reset level when running code
 - [ ] Add more levels
 - [ ] Add documentation for `game` object
