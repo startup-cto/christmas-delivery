@@ -82,7 +82,6 @@ sleigh.moveTo(someRandomPosition);`
       <main>
         <Display />
         <EditArea>
-          <div>{rulesExplanation}</div>
           <CodeEditor
             code={code}
             onCodeChange={setCode}
