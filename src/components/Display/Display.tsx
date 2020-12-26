@@ -4,20 +4,31 @@ import { selectWorldSize } from "../../world/selectors/selectWorldSize";
 import { Houses } from "../../houses/Houses/Houses";
 import { Sleighs } from "../../sleighs/Sleighs/Sleighs";
 import { GameEndAnnouncement } from "../GameEndAnnouncement/GameEndAnnouncement";
+import { prop } from "ramda";
+import styled from "styled-components";
+import { Pixel } from "../../models/Pixel";
+
+interface Props {
+  width: Pixel;
+  height: Pixel;
+}
+
+const Background = styled.div<Props>`
+  background-color: #ddd;
+  position: relative;
+  height: ${prop("height")}px;
+  width: ${prop("width")}px;
+  overflow: hidden;
+  margin: 1rem auto;
+`;
 
 export function Display() {
   const worldSize = useSelector(selectWorldSize);
   return (
-    <div
-      style={{
-        position: "relative",
-        width: worldSize.width,
-        height: worldSize.height,
-      }}
-    >
+    <Background width={worldSize.width} height={worldSize.height}>
       <Houses />
       <Sleighs />
       <GameEndAnnouncement />
-    </div>
+    </Background>
   );
 }

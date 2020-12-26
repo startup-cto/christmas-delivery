@@ -30,29 +30,33 @@ function createCssStar({
 }
 
 const Container = styled.div`
-  & {
-    display: grid;
-    grid-template-columns: minmax(1rem, auto) minmax(0px, 768px) minmax(
-        1rem,
-        auto
-      );
-    background: ${range(1, 70)
-        .map(() => ({
-          intensity: 0.5 + 0.5 * Math.random(),
-          xPercent: Math.random() * 100,
-          yPercent: Math.random() * 100,
-        }))
-        .map(createCssStar)
-        .join(",")},
-      linear-gradient(180deg, #242b4bee, #0b1026ee),
-      linear-gradient(120deg, #161b36aa, #061d37aa),
-      linear-gradient(240deg, #161b36aa, #061d37aa);
-  }
+  display: grid;
+  grid-template-columns: minmax(1rem, auto) minmax(0px, 768px) minmax(
+      1rem,
+      auto
+    );
+  background: ${range(1, 70)
+      .map(() => ({
+        intensity: 0.5 + 0.5 * Math.random(),
+        xPercent: Math.random() * 100,
+        yPercent: Math.random() * 100,
+      }))
+      .map(createCssStar)
+      .join(",")},
+    linear-gradient(180deg, #242b4bee, #0b1026ee),
+    linear-gradient(120deg, #161b36aa, #061d37aa),
+    linear-gradient(240deg, #161b36aa, #061d37aa);
 
-  & main {
-    background-color: #222a;
+  & > main {
     grid-column-start: 2;
   }
+`;
+
+const EditArea = styled.div`
+  background-color: #4c0000;
+  border: 3px outset #680000;
+  box-shadow: 2rem;
+  padding: 1rem;
 `;
 
 export function App() {
@@ -75,15 +79,17 @@ sleigh.moveTo(someRandomPosition);`
   return (
     <Container>
       <main>
-        <div>{rulesExplanation}</div>
         <Display />
-        <CodeEditor
-          code={code}
-          onCodeChange={setCode}
-          onRun={runCode}
-          disabled={isRunning}
-        />
-        <ProjectDescription />
+        <EditArea>
+          <div>{rulesExplanation}</div>
+          <CodeEditor
+            code={code}
+            onCodeChange={setCode}
+            onRun={runCode}
+            disabled={isRunning}
+          />
+          <ProjectDescription />
+        </EditArea>
       </main>
     </Container>
   );
