@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "Mountains of Christmas";
+    src: url("./MountainsofChristmas-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Mountains of Christmas";
+    src: url("./MountainsofChristmas-Bold.ttf") format("truetype");
+    font-weight: 700;
+}

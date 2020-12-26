@@ -4,13 +4,13 @@ import React, { useContext, useState } from "react";
 import { actions as worldActions } from "./world/slice";
 import { Game } from "./Game/Game";
 import { executeCode } from "./executeCode/executeCode";
-
-import { rulesExplanation } from "./locale/en/main.json";
 import { ProjectDescription } from "./ProjectDescription/ProjectDescription";
 import styled from "styled-components";
 import { CodeEditor } from "./components/CodeEditor/CodeEditor";
 import { selectIsRunning } from "./world/selectors/selectIsRunning";
 import { range } from "ramda";
+
+import "./typography/index.css";
 
 function createCssStar({
   xPercent,
