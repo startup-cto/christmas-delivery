@@ -32,11 +32,12 @@ export function Display() {
     const numberOfColumns = Math.ceil(width / 100);
     const numberOfRows = Math.ceil(height / 100);
     console.log({ numberOfColumns, numberOfRows });
+    const jitter = 0.8;
     setTreePositions(
       createGrid(numberOfColumns, numberOfRows)
         .map(({ x, y }) => ({
-          x: x + Math.random(),
-          y: y + Math.random(),
+          x: x + Math.random() * jitter,
+          y: y + Math.random() * jitter,
         }))
         .map(({ x, y }) => ({
           x: Math.floor(x * 100) as Pixel,
