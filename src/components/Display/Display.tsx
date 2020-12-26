@@ -31,7 +31,6 @@ export function Display() {
   useEffect(() => {
     const numberOfColumns = Math.ceil(width / 100);
     const numberOfRows = Math.ceil(height / 100);
-    console.log({ numberOfColumns, numberOfRows });
     const jitter = 0.8;
     setTreePositions(
       createGrid(numberOfColumns, numberOfRows)
