@@ -5,7 +5,7 @@ import { actions as levelActions } from "../currentLevel/slice";
 const initialState = {
   fps: 10,
   size: {
-    width: 800 as Pixel,
+    width: 600 as Pixel,
     height: 400 as Pixel,
   },
   isRunning: false,
