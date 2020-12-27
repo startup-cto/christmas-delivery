@@ -6,6 +6,8 @@ import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-monokai";
 import styled from "styled-components";
 
+import "../../typography/mountainsOfChristmas.css";
+
 const Heading = styled.h2`
   font-family: Mountains of Christmas;
   margin: 0;
@@ -23,7 +25,7 @@ const ImportantButton = styled.button`
   }
 `;
 
-interface Props {
+export interface Props {
   code: string;
   disabled?: boolean;
   onCodeChange: (value: ((prevState: string) => string) | string) => void;

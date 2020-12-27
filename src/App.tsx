@@ -10,8 +10,6 @@ import { CodeEditor } from "./components/CodeEditor/CodeEditor";
 import { selectIsRunning } from "./world/selectors/selectIsRunning";
 import { range } from "ramda";
 
-import "./typography/index.css";
-
 function createCssStar({
   xPercent,
   yPercent,
