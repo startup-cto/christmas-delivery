@@ -65,9 +65,12 @@ export function App() {
   const { store } = useContext(ReactReduxContext);
   const isRunning = useSelector(selectIsRunning);
   const [code, setCode] = useState(
-    `const sleigh = game.sleighs[0];
+    `// Find Santa's sleigh
+const sleigh = game.sleighs[0];
+// Find the only house in this level
 const house = game.houses[0];
 const positionOfHouse = house.position;
+// Deliver presents... hopefully Santa doesn't get lost!
 const someRandomPosition = { x: 300, y: 300 };
 sleigh.moveTo(someRandomPosition);`
   );
