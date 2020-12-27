@@ -1,6 +1,6 @@
 {
   "codeInputLabel": "Enter your code here",
-  "projectDescription": "This is an early stage prototype for an open-source React-Redux coding game that is live coded on Twitch.",
+  "projectDescription": "This is an early stage prototype for an open-source React-Redux coding game that is live coded on Twitch. Feel free to roam the code base or join us for a stream!",
   "runCodeButtonLabel": "Run code",
   "failureMessage": "Too slow :(",
   "successMessage": "You have won!",

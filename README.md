@@ -26,7 +26,7 @@ This project can be installed with `npm install`, started with `npm start` and t
 - [X] Overlay success message on top of display
 - [X] Beautify UI
 - [X] Beautify code run button
-- [ ] Beautify project description
+- [X] Beautify project description
 - [ ] Decouple animation from ticks
 - [ ] Get rid of ticksPerFrame
 - [ ] Change position of house so that when the sleigh is at the house it doesn't look weird

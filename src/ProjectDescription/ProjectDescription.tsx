@@ -6,11 +6,16 @@ import {
 import React from "react";
 import { FontAwesomeIconLink } from "../components/FontAwesomeIconLink/FontAwesomeIconLink";
 import { InlineList } from "../components/InlineList/InlineList";
+import styled from "styled-components";
+
+const TextBlock = styled.p`
+  margin: 1rem;
+`;
 
 export function ProjectDescription() {
   return (
     <aside>
-      <div>{projectDescription}</div>
+      <p>{projectDescription}</p>
       <InlineList>
         <FontAwesomeIconLink
           href="https://github.com/startup-cto/christmas-delivery"
