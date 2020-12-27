@@ -11,6 +11,18 @@ const Heading = styled.h2`
   margin: 0;
 `;
 
+const ImportantButton = styled.button`
+  background-color: #a00;
+  border: none;
+  color: #eee;
+  padding: 0.5rem 1rem;
+
+  &:hover,
+  &:active {
+    background-color: #c00;
+  }
+`;
+
 interface Props {
   code: string;
   disabled?: boolean;
@@ -43,7 +55,7 @@ export const CodeEditor: FunctionComponent<Props> = ({
         }}
       />
     </label>
-    <button
+    <ImportantButton
       disabled={disabled}
       onClick={(event) => {
         event.preventDefault();
@@ -51,6 +63,6 @@ export const CodeEditor: FunctionComponent<Props> = ({
       }}
     >
       {runCodeButtonLabel}
-    </button>
+    </ImportantButton>
   </form>
 );

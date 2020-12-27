@@ -25,7 +25,7 @@ This project can be installed with `npm install`, started with `npm start` and t
 - [X] Run tests on CI
 - [X] Overlay success message on top of display
 - [X] Beautify UI
-- [ ] Beautify code run button
+- [X] Beautify code run button
 - [ ] Beautify project description
 - [ ] Decouple animation from ticks
 - [ ] Get rid of ticksPerFrame
