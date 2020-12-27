@@ -9,13 +9,13 @@ import { InlineList } from "../components/InlineList/InlineList";
 import styled from "styled-components";
 
 const TextBlock = styled.p`
-  margin: 1rem;
+  margin: 2rem 0 1rem 0;
 `;
 
 export function ProjectDescription() {
   return (
     <aside>
-      <p>{projectDescription}</p>
+      <TextBlock>{projectDescription}</TextBlock>
       <InlineList>
         <FontAwesomeIconLink
           href="https://github.com/startup-cto/christmas-delivery"
