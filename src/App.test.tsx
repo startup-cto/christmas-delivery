@@ -24,12 +24,7 @@ describe("ConnectedApp", () => {
     const solution = "game.sleighs[0].moveTo(game.houses[0].position)";
 
     const store = createStore();
-    store.dispatch(
-      worldActions.updateWorldState({
-        fps: 1000,
-        ticksPerFrame: 1,
-      })
-    );
+    store.dispatch(worldActions.setTimeBetweenTicks(1));
     const { findByLabelText, findByText } = render(<App />, {
       wrapper: getMockProvider(store),
     });
@@ -56,12 +51,7 @@ describe("ConnectedApp", () => {
 
   it("shows a level lost message when running no code at all", async () => {
     const store = createStore();
-    store.dispatch(
-      worldActions.updateWorldState({
-        fps: 1000,
-        ticksPerFrame: 1,
-      })
-    );
+    store.dispatch(worldActions.setTimeBetweenTicks(1));
 
     const { findByLabelText, findByText } = render(<App />, {
       wrapper: getMockProvider(store),

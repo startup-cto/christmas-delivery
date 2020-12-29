@@ -13,28 +13,28 @@ import { Vector2D } from "../utils/Vector2D/Vector2D";
 import { selectSleighs } from "../sleighs/selectors/selectSleights";
 import { selectHouses } from "../houses/selectors/selectHouses";
 import { selectTicks } from "./selectors/selectTicks";
+import { selectTimeBetweenTicksInMS } from "./selectors/selectTimeBetweenTicksInMS";
 
 export function* worldSaga() {
   yield* fork(runGame);
-  yield* takeEvery(actions.waitTicks.toString(), checkWinCondition);
-  yield* takeEvery(actions.waitTicks.toString(), checkLoseCondition);
+  yield* takeEvery(actions.wait, checkWinCondition);
+  yield* takeEvery(actions.wait, checkLoseCondition);
 }
 
 function* runGame() {
   while (true) {
-    yield* take(actions.runGame.toString());
+    yield* take(actions.runGame);
     const waitTicksSaga = yield* fork(regularlyWaitTicks);
-    yield* take(levelActions.winLevel.toString());
+    yield* take(levelActions.winLevel);
     yield* cancel(waitTicksSaga);
   }
 }
 
 function* regularlyWaitTicks() {
   while (true) {
-    const ticksPerFrame = yield* select((state) => state.world.ticksPerFrame);
-    yield* put(actions.waitTicks(ticksPerFrame));
-    const fps = yield* select((state) => state.world.fps);
-    yield* delay(1000 / fps);
+    yield* put(actions.wait());
+    const timeBetweenTicksInMS = yield* select(selectTimeBetweenTicksInMS);
+    yield* delay(timeBetweenTicksInMS);
   }
 }
 

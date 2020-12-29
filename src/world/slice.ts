@@ -3,14 +3,13 @@ import { Pixel } from "../models/Pixel";
 import { actions as levelActions } from "../currentLevel/slice";
 
 const initialState = {
-  fps: 10,
   size: {
     width: 600 as Pixel,
     height: 400 as Pixel,
   },
   isRunning: false,
   ticks: 0,
-  ticksPerFrame: 10,
+  timeBetweenTicksInMS: 100,
 };
 
 export type World = typeof initialState;
@@ -20,13 +19,13 @@ export const { reducer, actions } = createSlice({
   initialState,
   reducers: {
     runGame: (state) => ({ ...state, isRunning: true, ticks: 0 }),
-    updateWorldState: (state, action: PayloadAction<Partial<World>>) => ({
+    setTimeBetweenTicks: (state, action: PayloadAction<number>) => ({
       ...state,
-      ...action.payload,
+      timeBetweenTicksInMS: action.payload,
     }),
-    waitTicks: (state, action: PayloadAction<number>) => ({
+    wait: (state) => ({
       ...state,
-      ticks: state.ticks + action.payload,
+      ticks: state.ticks + 1,
     }),
   },
   extraReducers: (builder) => {

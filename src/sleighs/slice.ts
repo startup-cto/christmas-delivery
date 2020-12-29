@@ -45,14 +45,14 @@ export const { actions, reducer } = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(worldActions.waitTicks, (state, action) =>
+    builder.addCase(worldActions.wait, (state, action) =>
       state.map((sleigh) => {
         if (sleigh.command === null) return sleigh;
         const currentPosition = new Vector2D(sleigh.position);
         const targetPosition = new Vector2D(sleigh.command.payload);
         const movementNeeded = targetPosition.subtract(currentPosition);
         const direction = movementNeeded.normalize();
-        const movementDistance = sleigh.maxSpeed * action.payload;
+        const movementDistance = sleigh.maxSpeed;
         const nextPosition =
           movementNeeded.length <= movementDistance
             ? targetPosition

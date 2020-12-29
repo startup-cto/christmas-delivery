@@ -19,9 +19,7 @@ describe("worldSaga", () => {
         .withState(initialState)
         .dispatch(actions.runGame())
         .silentRun();
-      expect(result.effects.put).toSatisfyAll(
-        equals(put(actions.waitTicks(initialState.world.ticksPerFrame)))
-      );
+      expect(result.effects.put).toSatisfyAll(equals(put(actions.wait())));
     });
 
     it("dispatches one waitTicks action per delay effect resolved", async () => {
@@ -48,7 +46,7 @@ describe("worldSaga", () => {
           }
           if (
             wasWinLevelDispatched &&
-            action.type === actions.waitTicks.toString()
+            action.type === actions.wait.toString()
           ) {
             wasWaitTicksDispatchedAfterWinLevel = true;
           }
@@ -78,7 +76,7 @@ describe("worldSaga", () => {
               sleighs: [new MockSleigh({ position })],
             })
           )
-          .dispatch(actions.waitTicks(1))
+          .dispatch(actions.wait())
           .silentRun();
       });
     });
@@ -94,7 +92,7 @@ describe("worldSaga", () => {
               world: new MockWorld({ ticks: 101 }),
             })
           )
-          .dispatch(actions.waitTicks(1))
+          .dispatch(actions.wait())
           .silentRun();
       });
     });

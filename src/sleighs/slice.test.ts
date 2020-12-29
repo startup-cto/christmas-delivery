@@ -8,16 +8,16 @@ import { Heading } from "./Sleigh";
 describe("sleighs", () => {
   describe("worldActions.waitTicks", () => {
     it("returns an empty array if there are no sleighs", () => {
-      expect(reducer([], worldActions.waitTicks(1))).toEqual([]);
+      expect(reducer([], worldActions.wait())).toEqual([]);
     });
 
     it("does not change a sleigh without commands", () => {
       const sleighWithoutCommands = new MockSleigh({
         command: null,
       });
-      expect(
-        reducer([sleighWithoutCommands], worldActions.waitTicks(1))
-      ).toEqual([sleighWithoutCommands]);
+      expect(reducer([sleighWithoutCommands], worldActions.wait())).toEqual([
+        sleighWithoutCommands,
+      ]);
     });
 
     it("moves a sleigh towards its target by its maxSpeed", () => {
@@ -39,7 +39,7 @@ describe("sleighs", () => {
               },
             }),
           ],
-          worldActions.waitTicks(1)
+          worldActions.wait()
         )
       ).toContainEqual(
         expect.objectContaining({
@@ -71,7 +71,7 @@ describe("sleighs", () => {
               },
             }),
           ],
-          worldActions.waitTicks(1)
+          worldActions.wait()
         )
       ).toContainEqual(
         expect.objectContaining({
