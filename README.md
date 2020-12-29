@@ -29,7 +29,7 @@ This project can be installed with `npm install`, started with `npm start` and t
 - [X] Beautify project description
 - [X] Decouple animation from ticks
 - [X] Get rid of ticksPerFrame
-- [ ] Change position of house so that when the sleigh is at the house it doesn't look weird
+- [X] Change position of house so that when the sleigh is at the house it doesn't look weird
 - [X] Add background to the display
 - [ ] Reset level when running code
 - [ ] Add more levels

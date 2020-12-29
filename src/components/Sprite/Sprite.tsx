@@ -51,7 +51,7 @@ export function Sprite<State>({
   const { width, height } = spriteSheet.size;
   const row = spriteSheet.states.findIndex((el) => el === state);
   const yOffset = -1 * row * height;
-  const top = Math.floor(y - height / 2);
+  const top = Math.floor(y);
   const left = Math.floor(x - width / 2);
   return (
     <StaticSprite
