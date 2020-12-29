@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/christmas-delivery/static/css/main.24bb68bc.chunk.css",
-    "main.js": "/christmas-delivery/static/js/main.13613ec8.chunk.js",
-    "main.js.map": "/christmas-delivery/static/js/main.13613ec8.chunk.js.map",
+    "main.js": "/christmas-delivery/static/js/main.4a5efb24.chunk.js",
+    "main.js.map": "/christmas-delivery/static/js/main.4a5efb24.chunk.js.map",
     "runtime-main.js": "/christmas-delivery/static/js/runtime-main.0fe903d5.js",
     "runtime-main.js.map": "/christmas-delivery/static/js/runtime-main.0fe903d5.js.map",
     "static/css/2.b96aff37.chunk.css": "/christmas-delivery/static/css/2.b96aff37.chunk.css",
@@ -22,6 +22,6 @@
     "static/css/2.b96aff37.chunk.css",
     "static/js/2.3904d45e.chunk.js",
     "static/css/main.24bb68bc.chunk.css",
-    "static/js/main.13613ec8.chunk.js"
+    "static/js/main.4a5efb24.chunk.js"
   ]
 }
