@@ -5,6 +5,7 @@ import React from "react";
 import { Heading, Sleigh } from "../Sleigh";
 
 const sleighSpriteSheetMetaData = {
+  fps: 10,
   source: sleighSpriteSheet,
   size: {
     width: 256 as Pixel,

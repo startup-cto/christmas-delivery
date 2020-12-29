@@ -5,6 +5,7 @@ import React from "react";
 import { Position } from "../../models/Position";
 
 const houseSpriteSheetMetaData = {
+  fps: 10,
   source: houseSpriteSheet,
   size: {
     width: 64 as Pixel,

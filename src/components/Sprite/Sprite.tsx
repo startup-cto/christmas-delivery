@@ -1,9 +1,9 @@
 import { Position } from "../../models/Position";
 import React from "react";
 import { SpriteSheet } from "./SpriteSheet";
-import { useFrame } from "../../world/useFrame";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { prop } from "ramda";
+import { Pixel } from "../../models/Pixel";
 
 interface Props<State> {
   mirror?: boolean;
@@ -13,7 +13,19 @@ interface Props<State> {
   spriteSheet: SpriteSheet<State>;
 }
 
+const createSpriteAnimation = (lastXPosition: Pixel) => keyframes`
+from {
+  background-position-x: 0;
+}
+
+to {
+  background-position-x: ${lastXPosition}px;
+}
+`;
+
 const StaticSprite = styled.div<{
+  fps: number;
+  frames: number;
   width: number;
   height: number;
   imgSource: string;
@@ -24,6 +36,9 @@ const StaticSprite = styled.div<{
   background-image: url(${prop("imgSource")});
   transition-property: left, top;
   transition-duration: 0.5s;
+  animation: ${({ frames, width }) =>
+      createSpriteAnimation((width * frames) as Pixel)}
+    ${({ frames, fps }) => frames / fps}s steps(${prop("frames")}) infinite;
 `;
 
 export function Sprite<State>({
@@ -33,10 +48,8 @@ export function Sprite<State>({
   state,
   spriteSheet,
 }: Props<State>) {
-  const frame = useFrame(spriteSheet.frames);
   const { width, height } = spriteSheet.size;
   const row = spriteSheet.states.findIndex((el) => el === state);
-  const xOffset = -1 * frame * width;
   const yOffset = -1 * row * height;
   const top = Math.floor(y - height / 2);
   const left = Math.floor(x - width / 2);
@@ -45,11 +58,12 @@ export function Sprite<State>({
       style={{
         left,
         top,
-        backgroundPositionX: xOffset,
         backgroundPositionY: yOffset,
         transform: `scaleX(${mirror ? -scale : scale} ) scaleY(${scale})`,
         zIndex: Math.max(top + 100, 0),
       }}
+      fps={spriteSheet.fps}
+      frames={spriteSheet.frames}
       height={height}
       imgSource={spriteSheet.source}
       width={width}

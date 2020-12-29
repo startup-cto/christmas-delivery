@@ -17,7 +17,7 @@ describe("worldSaga", () => {
       const initialState = new MockRootState();
       const result = await expectSaga(worldSaga)
         .withState(initialState)
-        .dispatch(actions.runGame(initialState.world))
+        .dispatch(actions.runGame())
         .silentRun();
       expect(result.effects.put).toSatisfyAll(
         equals(put(actions.waitTicks(initialState.world.ticksPerFrame)))
@@ -28,7 +28,7 @@ describe("worldSaga", () => {
       const initialState = new MockRootState();
       const result = await expectSaga(worldSaga)
         .withState(initialState)
-        .dispatch(actions.runGame(initialState.world))
+        .dispatch(actions.runGame())
         .silentRun();
 
       // The testing framework does not support delay effects,
@@ -54,7 +54,7 @@ describe("worldSaga", () => {
           }
           return state;
         })
-        .dispatch(actions.runGame(initialState.world))
+        .dispatch(actions.runGame())
         .delay(10)
         .dispatch(levelActions.winLevel())
         .silentRun();

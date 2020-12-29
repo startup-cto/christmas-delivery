@@ -5,6 +5,7 @@ import React from "react";
 import { Position } from "../../models/Position";
 
 const treeSpriteSheetMetaData = {
+  fps: 10,
   source: treeSpriteSheet,
   size: {
     width: 64 as Pixel,
